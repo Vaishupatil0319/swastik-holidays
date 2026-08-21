@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most Wishlisted Packages</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/most_wishlisted_packages.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Most Wishlisted Packages</h1>
+
+        <a href="{{ url_for('admin.dashboard') }}" class="back-btn">
+            Back
+        </a>
+    </div>
+
+    {% if packages %}
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Package Name</th>
+                <th>Price</th>
+                <th>Wishlist Count</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for package in packages %}
+
+        <tr>
+
+            <td>{{ loop.index }}</td>
+
+            <td>{{ package.package_name }}</td>
+
+            <td>₹{{ package.price }}</td>
+
+            <td>{{ package.wishlist_count }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="no-data">
+        No package records found.
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

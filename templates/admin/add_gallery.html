@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Gallery Image</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/add_gallery.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Add Gallery Image</h1>
+
+        <a href="{{ url_for('admin.manage_gallery') }}"
+           class="back-btn">
+
+            ← Manage Gallery
+
+        </a>
+
+    </div>
+
+    {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+            {% for category,message in messages %}
+
+                <div class="alert {{ category }}">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+    {% endwith %}
+
+    <form
+        method="POST"
+        enctype="multipart/form-data">
+
+        <div class="form-group">
+
+            <label>Gallery Image</label>
+
+            <input
+                type="file"
+                name="image"
+                accept="image/*"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Title</label>
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter Image Title"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Category</label>
+
+            <select
+                name="category"
+                required>
+
+                <option value="">Select Category</option>
+
+                <option value="Beach">
+                    Beach
+                </option>
+
+                <option value="Hill Station">
+                    Hill Station
+                </option>
+
+                <option value="Adventure">
+                    Adventure
+                </option>
+
+                <option value="Hotel">
+                    Hotel
+                </option>
+
+                <option value="Wildlife">
+                    Wildlife
+                </option>
+
+                <option value="Temple">
+                    Temple
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Description</label>
+
+            <textarea
+                name="description"
+                rows="5"
+                placeholder="Enter Image Description"
+                required></textarea>
+
+        </div>
+
+        <button type="submit">
+
+            Upload Image
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

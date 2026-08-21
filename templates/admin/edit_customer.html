@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Edit Customer</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/edit_customer.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Edit Customer</h2>
+
+<form method="POST">
+
+<label>Name</label>
+
+<input
+type="text"
+name="name"
+value="{{ customer.name }}"
+required>
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+value="{{ customer.email }}"
+required>
+
+<label>Mobile</label>
+
+<input
+type="text"
+name="mobile"
+value="{{ customer.mobile }}"
+required>
+
+<label>Address</label>
+
+<textarea
+name="address"
+required>{{ customer.address }}</textarea>
+
+<button type="submit">
+Update Customer
+</button>
+
+<a href="/admin/customers" class="back-btn">
+Back
+</a>
+
+</form>
+
+</div>
+
+</body>
+</html>

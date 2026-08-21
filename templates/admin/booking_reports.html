@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Booking Reports</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/booking_reports.css') }}">
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Booking Reports</h2>
+
+<form method="POST" class="report-form">
+
+<select name="report_type" required>
+
+<option value="">Select Report</option>
+<option value="daily">Daily</option>
+<option value="monthly">Monthly</option>
+<option value="yearly">Yearly</option>
+
+</select>
+
+<input
+type="text"
+name="report_value"
+placeholder="YYYY-MM-DD / YYYY-MM / YYYY"
+required>
+
+<button type="submit">
+Generate Report
+</button>
+
+</form>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+<th>Customer</th>
+<th>Package</th>
+<th>Travel Date</th>
+<th>Travelers</th>
+<th>Booking Date</th>
+<th>Status</th>
+
+</tr>
+
+{% for row in reports %}
+
+<tr>
+
+<td>{{ row.id }}</td>
+<td>{{ row.name }}</td>
+<td>{{ row.package_name }}</td>
+<td>{{ row.travel_date }}</td>
+<td>{{ row.travelers }}</td>
+<td>{{ row.booking_date }}</td>
+<td>{{ row.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

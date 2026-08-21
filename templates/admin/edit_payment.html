@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Payment</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/edit_payment.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Edit Payment</h1>
+
+        <a href="{{ url_for('admin.manage_payments') }}"
+           class="back-btn">
+
+            ← Back
+
+        </a>
+
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+            {% for category,message in messages %}
+
+                <div class="alert {{ category }}">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+
+        <div class="form-group">
+
+            <label>Booking ID</label>
+
+            <input
+                type="text"
+                value="{{ payment.booking_id }}"
+                readonly>
+
+        </div>
+        <div class="form-group">
+
+            <label>Transaction ID</label>
+
+            <input
+                type="text"
+                value="{{ payment.transaction_id }}"
+                readonly>
+
+        </div>
+        <div class="form-group">
+
+            <label>Coupon Code</label>
+
+            <input
+                type="text"
+                value="{{ payment.coupon_code or 'Not Applied' }}"
+                readonly>
+        </div>
+        <div class="form-group">
+
+            <div class="form-group">
+
+                <label>Original Amount</label>
+        <input
+            type="text"
+            value="₹{{ payment.original_amount }}"
+            readonly>
+        </div>
+
+    <div class="form-group">
+
+        <label>Discount Amount</label>
+
+        <input
+            type="text"
+            value="₹{{ payment.discount_amount }}"
+            readonly>
+
+    </div>
+
+    <div class="form-group">
+
+    <label>Final Amount</label>
+
+    <input
+        type="text"
+        value="₹{{ payment.final_amount }}"
+        readonly>
+
+    </div>
+        <div class="form-group">
+
+            <label>Payment Method</label>
+
+            <input
+                type="text"
+                value="{{ payment.payment_method }}"
+                readonly>
+
+        </div>
+        <div class="form-group">
+
+<label>Payment Gateway</label>
+
+<select name="payment_gateway">
+
+<option value="Manual"
+{% if payment.payment_gateway=="Manual" %}
+selected
+{% endif %}>
+Manual
+</option>
+
+<option value="Razorpay"
+{% if payment.payment_gateway=="Razorpay" %}
+selected
+{% endif %}>
+Razorpay
+</option>
+
+<option value="Stripe"
+{% if payment.payment_gateway=="Stripe" %}
+selected
+{% endif %}>
+Stripe
+</option>
+
+<option value="UPI"
+{% if payment.payment_gateway=="UPI" %}
+selected
+{% endif %}>
+UPI
+</option>
+
+</select>
+
+</div>
+
+        <div class="form-group">
+
+            <label>Payment Status</label>
+
+            <select name="payment_status" required>
+
+                <option value="Pending"
+                {% if payment.payment_status=="Pending" %}
+                selected
+                {% endif %}>
+
+                    Pending
+
+                </option>
+
+                <option value="Paid"
+                {% if payment.payment_status=="Paid" %}
+                selected
+                {% endif %}>
+
+                    Paid
+
+                </option>
+
+                <option value="Failed"
+                {% if payment.payment_status=="Failed" %}
+                selected
+                {% endif %}>
+
+                    Failed
+
+                </option>
+                <option value="Refunded"
+                {% if payment.payment_status=="Refunded" %}
+                selected
+                {% endif %}>
+                Refunded
+                </option>
+
+            </select>
+
+        </div>
+        <div class="form-group">
+
+<label>Refund Status</label>
+
+<select name="refund_status">
+
+<option value="Not Refunded"
+{% if payment.refund_status=="Not Refunded" %}
+selected
+{% endif %}>
+Not Refunded
+</option>
+
+<option value="Refunded"
+{% if payment.refund_status=="Refunded" %}
+selected
+{% endif %}>
+Refunded
+</option>
+
+<option value="Partial"
+{% if payment.refund_status=="Partial" %}
+selected
+{% endif %}>
+Partial
+</option>
+
+</select>
+<div class="form-group">
+
+<label>Remarks</label>
+
+<textarea
+name="remarks"
+rows="4">{{ payment.remarks }}</textarea>
+
+</div>
+<div class="form-group">
+
+<label>Payment Date</label>
+
+<input
+type="text"
+value="{{ payment.payment_date }}"
+readonly>
+
+</div>
+</div>
+        <button type="submit">
+
+            Update Payment
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

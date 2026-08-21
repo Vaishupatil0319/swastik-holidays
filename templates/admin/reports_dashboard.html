@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reports Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/reports_dashboard.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Reports Dashboard</h2>
+
+<div class="cards">
+
+<div class="card blue">
+<h3>Total Customers</h3>
+<h1>{{ total_customers }}</h1>
+</div>
+
+<div class="card green">
+<h3>Total Packages</h3>
+<h1>{{ total_packages }}</h1>
+</div>
+
+<div class="card orange">
+<h3>Total Bookings</h3>
+<h1>{{ total_bookings }}</h1>
+</div>
+
+<div class="card purple">
+<h3>Total Revenue</h3>
+<h1>₹{{ total_revenue }}</h1>
+</div>
+
+<div class="card cyan">
+<h3>Today's Bookings</h3>
+<h1>{{ today_bookings }}</h1>
+</div>
+
+<div class="card yellow">
+<h3>Pending</h3>
+<h1>{{ pending }}</h1>
+</div>
+
+<div class="card success">
+<h3>Confirmed</h3>
+<h1>{{ confirmed }}</h1>
+</div>
+
+<div class="card danger">
+<h3>Cancelled</h3>
+<h1>{{ cancelled }}</h1>
+</div>
+<div class="action-buttons">
+<a href="/admin/booking_reports" class="action-btn">
+    📅 Booking Reports
+</a>
+</div>
+
+<div class="action-buttons">
+<a href="/admin/revenue_reports" class="action-btn">
+    💰 Revenue Reports
+</a>
+</div>
+<div class="action-buttons">
+<a href="/admin/export_bookings_csv" class="action-btn export-btn">
+    📄 Export Booking Report (CSV)
+</a>
+</div>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div class="chart-container">
+
+        <div class="chart-box">
+            <h3>Booking Status</h3>
+            <canvas id="statusChart"></canvas>
+        </div>
+
+    <div class="chart-box">
+        <h3>Monthly Bookings</h3>
+        <canvas id="monthlyChart"></canvas>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const statusLabels = JSON.parse('{{ status_data | map(attribute="status") | list | tojson | safe }}');
+const statusValues = JSON.parse('{{ status_data | map(attribute="total") | list | tojson | safe }}');
+
+new Chart(document.getElementById("statusChart"), {
+    type: "pie",
+    data: {
+        labels: statusLabels,
+        datasets: [{
+            data: statusValues,
+            backgroundColor: [
+                "#ffc107",
+                "#198754",
+                "#dc3545",
+                "#0d6efd"
+            ]
+        }]
+    }
+});
+
+const monthLabels = JSON.parse('{{ monthly_data | map(attribute="month") | list | tojson | safe }}');
+const monthValues = JSON.parse('{{ monthly_data | map(attribute="total") | list | tojson | safe }}');
+
+new Chart(document.getElementById("monthlyChart"), {
+    type: "bar",
+    data: {
+        labels: monthLabels,
+        datasets: [{
+            label: "Bookings",
+            data: monthValues,
+            backgroundColor: "#0d6efd"
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+</body>
+</html>

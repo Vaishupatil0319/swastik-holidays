@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>Revenue Reports</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/revenue_reports.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Revenue Reports</h2>
+
+<form method="POST" class="report-form">
+
+<select name="report_type" required>
+    <option value="">Select Report</option>
+    <option value="daily">Daily</option>
+    <option value="monthly">Monthly</option>
+    <option value="yearly">Yearly</option>
+</select>
+
+<input
+type="text"
+name="report_value"
+placeholder="YYYY-MM-DD / YYYY-MM / YYYY"
+required>
+
+<button type="submit">
+Generate
+</button>
+
+</form>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Customer</th>
+<th>Package</th>
+<th>Price</th>
+<th>Travelers</th>
+<th>Amount</th>
+<th>Booking Date</th>
+</tr>
+
+{% for row in reports %}
+
+<tr>
+
+<td>{{ row.id }}</td>
+<td>{{ row.name }}</td>
+<td>{{ row.package_name }}</td>
+<td>₹{{ row.price }}</td>
+<td>{{ row.travelers }}</td>
+<td>₹{{ row.amount }}</td>
+<td>{{ row.booking_date }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="total-box">
+
+<h2 style="color: white;" >Total Revenue : ₹{{ total_revenue }}</h2>
+
+</div>
+
+</div>
+
+</body>
+</html>

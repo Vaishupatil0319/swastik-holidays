@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0">
+
+<title>
+
+Notifications
+
+</title>
+
+
+<link rel="stylesheet"
+
+href="{{url_for(
+
+'static',
+
+filename='css/notifications.css'
+
+)}}">
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+
+Notifications
+
+</h1>
+
+
+<div class="statistics">
+
+
+<div class="box">
+
+<h2>
+
+{{notifications|length}}
+
+</h2>
+
+<p>
+
+Total
+
+</p>
+
+</div>
+
+
+
+<div class="box">
+
+<h2>
+
+{{unread_count}}
+
+</h2>
+
+<p>
+
+Unread
+
+</p>
+
+</div>
+
+
+
+<div class="box">
+
+<h2>
+
+{{read_count}}
+
+</h2>
+
+<p>
+
+Read
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<div class="button-section">
+
+
+<a href="{{url_for(
+
+'admin.read_all_notifications'
+
+)}}">
+
+Mark All Read
+
+</a>
+
+
+
+<a href="{{url_for(
+
+'admin.delete_all_notifications'
+
+)}}">
+
+Delete All
+
+</a>
+
+
+</div>
+
+
+
+{% if notifications %}
+
+
+{% for notification in notifications %}
+
+
+<div class="notification-card">
+
+
+<h2>
+
+{{notification.title}}
+
+</h2>
+
+
+<p>
+
+{{notification.message}}
+
+</p>
+
+
+<h4>
+
+Notification Type :
+{{notification.notification_type}}
+
+</h4>
+
+
+<h4>
+
+{{notification.created_at}}
+
+</h4>
+
+
+
+{% if notification.status=="Unread" %}
+
+<span class="unread">
+
+Unread
+
+</span>
+
+{% else %}
+
+<span class="read">
+
+Read
+
+</span>
+
+{% endif %}
+
+
+
+<div class="buttons">
+
+
+<a href="{{url_for(
+
+'admin.read_notification',
+
+id=notification.id
+
+)}}">
+
+Read
+
+</a>
+
+
+
+<a href="{{url_for(
+
+'admin.delete_notification',
+
+id=notification.id
+
+)}}">
+
+Delete
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+{% else %}
+
+
+<div class="empty-box">
+
+
+<h2>
+
+No Notifications Found
+
+</h2>
+
+
+<p>
+
+No notifications are available.
+
+</p>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+</body>
+
+
+</html>

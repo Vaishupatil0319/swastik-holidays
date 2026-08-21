@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Package Details</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/package_details.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>{{ package.package_name }}</h1>
+
+<div class="top">
+
+<div class="image">
+
+<img
+src="{{ url_for('static', filename='images/' + package.image) }}">
+
+</div>
+
+<div class="info">
+
+<h2>Basic Information</h2>
+
+<p><strong>Location :</strong> {{ package.location }}</p>
+
+<p><strong>Duration :</strong> {{ package.duration }}</p>
+
+<p><strong>Price :</strong> ₹{{ package.price }}</p>
+
+<p><strong>Status :</strong> {{ package.status }}</p>
+
+<p><strong>Package Type :</strong> {{ package.package_type }}</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<h2>Accommodation</h2>
+
+<p><strong>Hotel :</strong> {{ package.hotel }}</p>
+
+<p><strong>Hotel Type :</strong> {{ package.hotel_type }}</p>
+
+<p><strong>Meals :</strong> {{ package.meals }}</p>
+
+<hr>
+
+<h2>Transportation</h2>
+
+<p><strong>Transport :</strong> {{ package.transport }}</p>
+
+<p><strong>Pickup Point :</strong> {{ package.pickup_point }}</p>
+
+<p><strong>Drop Point :</strong> {{ package.drop_point }}</p>
+
+<hr>
+
+<h2>Guide</h2>
+
+<p>{{ package.guide }}</p>
+
+<hr>
+
+<h2>Sightseeing</h2>
+
+<p>{{ package.sightseeing }}</p>
+
+<hr>
+
+<h2>Description</h2>
+
+<p>{{ package.description }}</p>
+
+<br>
+
+<a
+href="{{ url_for('admin.view_packages') }}"
+class="back-btn">
+
+← Back to Packages
+
+</a>
+
+</div>
+
+</body>
+
+</html>

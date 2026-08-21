@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Manage Blogs</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/manage_blogs.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Manage Blogs</h1>
+
+        <div>
+
+            <a href="{{ url_for('admin.add_blog') }}"
+               class="add-btn">
+
+                + Add Blog
+
+            </a>
+
+            <a href="{{ url_for('admin.dashboard') }}"
+               class="back-btn">
+
+                ← Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="search-box">
+
+        <form method="GET">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search Blog Title"
+                value="{{ search }}">
+
+            <button>
+
+                Search
+
+            </button>
+
+            <a href="{{ url_for('admin.manage_blogs') }}">
+
+                Reset
+
+            </a>
+
+        </form>
+
+    </div>
+
+    {% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+
+        {% for category,message in messages %}
+
+        <div class="alert {{ category }}">
+
+            {{ message }}
+
+        </div>
+
+        {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+
+    {% if blogs %}
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Image</th>
+
+            <th>Title</th>
+
+            <th>Category</th>
+
+            <th>Author</th>
+
+            <th>Created</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for blog in blogs %}
+
+        <tr>
+
+            <td>{{ blog.id }}</td>
+
+            <td>
+
+                <img
+                src="{{ url_for('static',
+                filename='images/' + blog.image) }}"
+                width="100">
+
+            </td>
+
+            <td>{{ blog.title }}</td>
+
+            <td>{{ blog.category }}</td>
+
+            <td>{{ blog.author }}</td>
+
+            <td>{{ blog.created_at }}</td>
+
+            <td>
+
+                <a href="{{ url_for('admin.edit_blog',
+                blog_id=blog.id) }}"
+                class="edit-btn">
+
+                    Edit
+
+                </a>
+
+                <a href="{{ url_for('admin.delete_blog',
+                blog_id=blog.id) }}"
+                class="delete-btn"
+                onclick="return confirm('Delete this blog?')">
+
+                    Delete
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty-box">
+
+        <h2>No Blogs Found</h2>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

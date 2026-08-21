@@ -1,0 +1,118 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:40px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+}
+
+.card{
+background:#fff;
+padding:30px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+h2{
+text-align:center;
+margin-bottom:25px;
+color:#0d6efd;
+}
+
+h3{
+margin-top:20px;
+margin-bottom:10px;
+color:#198754;
+}
+
+p{
+margin-bottom:10px;
+line-height:24px;
+}
+
+hr{
+margin:20px 0;
+}
+
+.status{
+padding:6px 12px;
+border-radius:20px;
+color:white;
+}
+
+.pending{
+background:#ffc107;
+color:black;
+}
+
+.confirmed{
+background:#198754;
+}
+
+.cancelled{
+background:#dc3545;
+}
+
+.buttons{
+margin-top:30px;
+display:flex;
+gap:10px;
+}
+
+.back-btn,
+.approve-btn,
+.reject-btn{
+text-decoration:none;
+padding:12px 20px;
+border-radius:6px;
+color:white;
+}
+
+.back-btn{
+background:#6c757d;
+}
+
+.approve-btn{
+background:#198754;
+}
+
+.reject-btn{
+background:#dc3545;
+}
+
+.back-btn:hover{
+background:#5a6268;
+}
+
+.approve-btn:hover{
+background:#146c43;
+}
+
+.reject-btn:hover{
+background:#bb2d3b;
+}
+
+.approved-label{
+    background:#198754;
+    color:white;
+    padding:12px 18px;
+    border-radius:6px;
+    font-weight:bold;
+}
+
+.rejected-label{
+    background:#dc3545;
+    color:white;
+    padding:12px 18px;
+    border-radius:6px;
+    font-weight:bold;
+}

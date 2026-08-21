@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist Statistics</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/wishlist_statistics.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Wishlist Statistics</h1>
+
+        <a href="{{ url_for('admin.dashboard') }}" class="back-btn">
+            Back
+        </a>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>{{ stats.total_wishlist or 0 }}</h2>
+            <p>Total Wishlist Records</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ stats.total_customers or 0 }}</h2>
+            <p>Customers Using Wishlist</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ stats.total_packages or 0 }}</h2>
+            <p>Packages in Wishlist</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ stats.average_per_customer or 0 }}</h2>
+            <p>Average Wishlist per Customer</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

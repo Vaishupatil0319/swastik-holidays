@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admin Profile</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/admin_profile.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Admin Profile</h1>
+
+<a href="{{ url_for('admin.dashboard') }}"
+class="back-btn">
+
+← Dashboard
+
+</a>
+
+</div>
+
+<div class="profile-card">
+
+<div class="profile-image">
+
+<img
+src="{{ url_for('static', filename='images/admin.jpeg') }}"
+alt="Admin">
+
+</div>
+
+<div class="profile-details">
+
+<div class="row">
+
+<label>Admin ID</label>
+
+<input
+type="text"
+value="{{ admin.id }}"
+readonly>
+
+</div>
+
+<div class="row">
+
+<label>Name</label>
+
+<input
+type="text"
+value="{{ admin.name }}"
+readonly>
+
+</div>
+
+<div class="row">
+
+<label>Email</label>
+
+<input
+type="email"
+value="{{ admin.email }}"
+readonly>
+
+</div>
+
+<div class="buttons">
+
+<a
+href="{{ url_for('admin.edit_admin_profile') }}"
+class="edit-btn">
+
+Edit Profile
+
+</a>
+
+<a
+href="{{ url_for('admin.change_admin_password') }}"
+class="password-btn">
+
+Change Password
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Manage Gallery</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/manage_gallery.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Gallery Management</h1>
+
+        <div>
+
+            <a href="{{ url_for('admin.add_gallery') }}"
+               class="add-btn">
+
+                + Add Image
+
+            </a>
+
+            <a href="{{ url_for('admin.dashboard') }}"
+               class="back-btn">
+
+                ← Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="search-box">
+
+        <form method="GET">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search Title or Category"
+                value="{{ search }}">
+
+            <button>
+
+                Search
+
+            </button>
+
+            <a href="{{ url_for('admin.manage_gallery') }}">
+
+                Reset
+
+            </a>
+
+        </form>
+
+    </div>
+
+    {% if gallery %}
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Image</th>
+
+            <th>Title</th>
+
+            <th>Category</th>
+
+            <th>Description</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for image in gallery %}
+
+        <tr>
+
+            <td>{{ image.id }}</td>
+
+            <td>
+
+                <img
+                src="{{ url_for('static',
+                filename='images/' + image.image) }}"
+                width="120">
+
+            </td>
+
+            <td>{{ image.title }}</td>
+
+            <td>{{ image.category }}</td>
+
+            <td>{{ image.description }}</td>
+
+            <td>
+
+                <a href="{{ url_for('admin.edit_gallery',
+                gallery_id=image.id) }}"
+                class="edit-btn">
+
+                    Edit
+
+                </a>
+
+                <a href="{{ url_for('admin.delete_gallery',
+                gallery_id=image.id) }}"
+                class="delete-btn"
+                onclick="return confirm('Delete Image?')">
+
+                    Delete
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty-box">
+
+        <h2>No Images Found</h2>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>View Contact</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/view_contact.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Contact Message</h1>
+
+<a href="{{ url_for('admin.manage_contacts') }}"
+class="back-btn">
+
+← Back
+
+</a>
+
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+
+{% for category,message in messages %}
+
+<div class="alert {{ category }}">
+
+{{ message }}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
+<div class="details">
+
+<p><strong>Name :</strong> {{ contact.name }}</p>
+
+<p><strong>Email :</strong> {{ contact.email }}</p>
+
+<p><strong>Subject :</strong> {{ contact.subject }}</p>
+
+<p><strong>Date :</strong> {{ contact.created_at }}</p>
+
+<p><strong>Message :</strong></p>
+
+<div class="message-box">
+
+{{ contact.message }}
+
+</div>
+
+</div>
+
+<form method="POST">
+
+<label>Status</label>
+
+<select
+name="status"
+required>
+
+<option value="New"
+{% if contact.status=="New" %}
+selected
+{% endif %}>
+
+New
+
+</option>
+
+<option value="Read"
+{% if contact.status=="Read" %}
+selected
+{% endif %}>
+
+Read
+
+</option>
+
+<option value="Replied"
+{% if contact.status=="Replied" %}
+selected
+{% endif %}>
+
+Replied
+
+</option>
+
+</select>
+
+<button type="submit">
+
+Update Status
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

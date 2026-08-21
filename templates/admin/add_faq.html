@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Add FAQ</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/add_faq.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Add FAQ</h1>
+
+<a href="{{ url_for('admin.dashboard') }}"
+class="back-btn">
+
+← Dashboard
+
+</a>
+
+</div>
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+
+{% for category,message in messages %}
+
+<div class="alert {{ category }}">
+
+{{ message }}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
+<form method="POST">
+
+<label>Question</label>
+
+<input
+type="text"
+name="question"
+required>
+
+<label>Answer</label>
+
+<textarea
+name="answer"
+rows="8"
+required></textarea>
+
+<label>Display Order</label>
+
+<input
+type="number"
+name="display_order"
+value="1"
+min="1"
+required>
+
+<label>Status</label>
+
+<select
+name="status">
+
+<option value="Active">
+
+Active
+
+</option>
+
+<option value="Inactive">
+
+Inactive
+
+</option>
+
+</select>
+
+<button type="submit">
+
+Add FAQ
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

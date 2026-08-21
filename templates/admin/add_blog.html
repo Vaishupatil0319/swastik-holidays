@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Add Blog</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/add_blog.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Add Travel Blog</h1>
+
+        <a href="{{ url_for('admin.manage_blogs') }}"
+           class="back-btn">
+
+            ← Back
+
+        </a>
+
+    </div>
+
+    {% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+
+        {% for category,message in messages %}
+
+        <div class="alert {{ category }}">
+
+            {{ message }}
+
+        </div>
+
+        {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+
+    <form
+        method="POST"
+        enctype="multipart/form-data">
+
+        <label>Blog Title</label>
+
+        <input
+            type="text"
+            name="title"
+            required>
+
+        <label>Category</label>
+
+        <select
+            name="category"
+            required>
+
+            <option value="">Select Category</option>
+
+            <option>Beach</option>
+
+            <option>Hill Station</option>
+
+            <option>Adventure</option>
+
+            <option>Wildlife</option>
+
+            <option>Temple</option>
+
+            <option>International</option>
+
+            <option>Travel Tips</option>
+
+        </select>
+
+        <label>Upload Image</label>
+
+        <input
+            type="file"
+            name="image"
+            accept="image/*"
+            required>
+
+        <label>Short Description</label>
+
+        <textarea
+            name="short_description"
+            rows="3"
+            required></textarea>
+
+        <label>Blog Content</label>
+
+        <textarea
+            name="content"
+            rows="10"
+            required></textarea>
+
+        <button type="submit">
+
+            Publish Blog
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+padding:30px;
+background:#f5f5f5;
+}
+
+h1{
+margin-bottom:25px;
+color:#0d6efd;
+}
+
+table{
+width:100%;
+background:white;
+border-collapse:collapse;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+th{
+background:#0d6efd;
+color:white;
+padding:14px;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+tr:hover{
+background:#f2f2f2;
+}
+
+a{
+text-decoration:none;
+color:#0d6efd;
+font-weight:bold;
+}
+form{
+    margin-bottom:20px;
+}
+
+form input{
+    padding:10px;
+    width:300px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+form button{
+    padding:10px 18px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    margin-left:5px;
+}
+
+form button:hover{
+    background:#084298;
+}
+
+.delete-btn{
+    color:white;
+    background:#dc3545;
+    padding:6px 12px;
+    border-radius:5px;
+}
+
+.delete-btn:hover{
+    background:#bb2d3b;
+}
+
+.edit-btn{
+    color:white;
+    background:#198754;
+    padding:6px 12px;
+    border-radius:5px;
+    margin-right:8px;
+}
+
+.edit-btn:hover{
+    background:#146c43;
+}
+
+.block-btn{
+    background:#ffc107;
+    color:black;
+    padding:6px 12px;
+    border-radius:5px;
+    margin-left:5px;
+}
+
+.block-btn:hover{
+    background:#e0a800;
+}
+
+.unblock-btn{
+    background:#198754;
+    color:white;
+    padding:6px 12px;
+    border-radius:5px;
+    margin-left:5px;
+}
+
+.unblock-btn:hover{
+    background:#146c43;
+}

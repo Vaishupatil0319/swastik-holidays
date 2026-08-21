@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>Swastik Holidays</h2>
+
+<ul>
+
+<li><a href="#">Dashboard</a></li>
+
+<li><a href="#">Customers</a></li>
+
+<li><a href="#">Packages</a></li>
+
+<li><a href="#">Bookings</a></li>
+
+<li><a href="#">Payments</a></li>
+
+<!-- <li><a href="#">Partners</a></li>
+
+<li><a href="#">Hotels</a></li>
+
+<li><a href="#">Buses</a></li>
+
+<li><a href="#">Taxis</a></li>
+
+<li><a href="#">Tour Guides</a></li> -->
+
+<li><a href="#">Reports</a></li>
+<li>
+    <a href="{{ url_for('admin.reviews') }}">
+         Customer Reviews
+    </a>
+</li>
+<li>
+    <a href="{{ url_for('admin.review_statistics') }}">
+        Review Statistics
+    </a>
+</li>
+<li>
+    <a href="{{ url_for('admin.top_rated_packages') }}">
+        Top Rated Packages
+    </a>
+</li>
+<li>
+    <a href="{{ url_for('admin.wishlist_report') }}">
+        Wishlist Report
+    </a>
+</li>
+<li>
+    <a href="{{ url_for('admin.most_wishlisted_packages') }}">
+        Most Wishlisted Packages
+    </a>
+</li>
+<li>
+    <a href="{{ url_for('admin.wishlist_statistics') }}">
+        Wishlist Statistics
+    </a>
+</li>
+<li>
+    <a href="{{ url_for('admin.notifications') }}">
+        notification
+    </a>
+</li>
+
+<li>
+    <a href="{{ url_for('admin.payment_dashboard') }}">
+        Payment Dashboard
+    </a>
+</li>
+<li><a href="{{ url_for('admin.coupon_dashboard') }}" class="card">
+
+    <i class="fas fa-tags"></i>
+
+    <h3>Coupon Dashboard</h3>
+
+</a></li>
+
+<li><a href="/admin/logout">Logout</a></li>
+
+</ul>
+
+</div>
+</div>
+<br><br>
+<div class="bell-section">
+
+
+<a href="{{url_for(
+
+'admin.notifications'
+
+)}}">
+
+<div class="bell-icon">
+
+
+🔔
+
+
+{% if notification_count>0 %}
+
+<span>
+
+{{notification_count}}
+
+</span>
+
+{% endif %}
+
+
+</div>
+
+</a>
+
+
+
+<div class="main">
+
+<div class="topbar">
+
+<h2>Admin Dashboard</h2>
+
+<h3>Welcome {{ admin_name }}</h3>
+
+        <a href="{{ url_for('admin.admin_profile') }}"
+           class="profile-btn">
+
+            <i class="fa-solid fa-user"></i>
+
+            Profile
+
+        </a>
+        
+</div>
+
+<div class="cards">
+
+<div class="card-box">
+
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+
+<h3>Total Customers</h3>
+
+<h2>{{ total_customers }}</h2>
+
+</div>
+
+<div class="card-box">
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+<h3>Total Packages</h3>
+
+<h2>{{ total_packages }}</h2>
+
+</div>
+
+<div class="card-box">
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+<h3>Total Bookings</h3>
+
+<h2>{{ total_bookings }}</h2>
+
+</div>
+
+<div class="card-box">
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+<h3>Total Revenue</h3>
+
+<h2>₹{{ total_revenue }}</h2>
+
+</div>
+
+<div class="card-box">
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+<h3>Hotels</h3>
+
+<h2>{{ total_hotels }}</h2>
+
+</div>
+
+<div class="card-box">
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+<h3>Buses</h3>
+
+<h2>{{ total_buses }}</h2>
+
+</div>
+
+<div class="card-box">
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+<h3>Taxis</h3>
+
+<h2>{{ total_taxis }}</h2>
+
+</div>
+
+
+<div class="card-box">
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+<h3>Partners</h3>
+
+<h2>{{ total_partners }}</h2>
+
+<div class="quick-actions">
+
+    <h3>Quick Actions</h3>
+
+    <div class="action-buttons">
+
+        <a href="/admin/add_package" class="action-btn">
+            ➕ Add Package
+        </a>
+
+        <a href="/admin/packages" class="action-btn">
+            📦 Manage Packages
+        </a>
+        <a href="/admin/bookings" class="action-btn">
+            📖 Manage Bookings
+        </a>
+
+        <a href="/admin/customers" class="action-btn">
+            👥 Manage Customers
+        </a>
+
+        <a href="/admin/reports" class="action-btn">
+            📊 Reports Dashboard
+        </a>
+        <a href="{{ url_for('admin.add_coupon') }}" class="action-btn">
+            🎟️ Create Coupon
+        </a>
+
+    <a href="{{ url_for('admin.manage_coupons') }}" class="action-btn">
+        📋 Manage Coupons
+    </a>
+    <a href="{{ url_for('admin.manage_payments') }}"
+        class="action-btn">
+        💳 Manage Payments
+    </a>
+ 
+    <a href="{{ url_for('admin.payment_statistics') }}"
+    class="action-btn">
+
+📈 Payment Statistics
+
+</a>
+   <a href="{{ url_for('admin.manage_gallery') }}"
+        class="action-btn">
+
+        🖼️ Gallery Management
+
+        </a>
+    <a href="{{ url_for('admin.manage_blogs') }}"
+class="action-btn">
+
+📝 Blog Management
+
+</a>
+<a href="{{ url_for('admin.manage_contacts') }}"
+class="action-btn">
+
+📩 Contact Messages
+
+</a>
+<a href="{{ url_for('admin.add_faq') }}"
+class="action-btn">
+
+❓ Add FAQ
+
+</a>
+<a href="{{ url_for('admin.manage_faq') }}"
+class="action-btn">
+
+📋 Manage FAQ
+
+</a>
+    </div>
+<div class="booking-stats">
+
+    <div class="stat-card total">
+        <h3>Total Bookings</h3>
+        <h2>{{ total_bookings }}</h2>
+    </div>
+
+    <div class="stat-card pending">
+        <h3>Pending</h3>
+        <h2>{{ pending_bookings }}</h2>
+    </div>
+
+    <div class="stat-card confirmed">
+        <h3>Confirmed</h3>
+        <h2>{{ confirmed_bookings }}</h2>
+    </div>
+
+    <div class="stat-card cancelled">
+        <h3>Cancelled</h3>
+        <h2>{{ cancelled_bookings }}</h2>
+    </div>
+
+</div>
+<hr>
+
+<div class="notification-heading">
+
+
+<h1>
+
+Notifications ({{notification_count}})
+
+</h1>
+
+
+</div>
+
+
+
+{% if latest_notifications %}
+
+
+{% for notification in latest_notifications %}
+
+
+<div class="dashboard-notification">
+
+
+<h2>
+
+{{notification.title}}
+
+</h2>
+
+
+<p>
+
+{{notification.message}}
+
+</p>
+
+
+<h4>
+
+{{notification.created_at}}
+
+</h4>
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+<div class="view-button">
+
+
+<a href="{{url_for(
+
+'admin.notifications'
+
+)}}">
+
+View All Notifications
+
+</a>
+
+
+</div>
+
+
+{% else %}
+
+
+<div class="no-notification">
+
+
+<h2>
+
+No Notifications Available
+
+</h2>
+
+
+</div>
+
+
+{% endif %}
+<div class="chart-container">
+
+<div class="chart-box">
+
+<h4>Monthly Bookings</h4>
+
+<canvas id="bookingChart"></canvas>
+
+</div>
+
+<div class="chart-box">
+
+<h4>Monthly Revenue</h4>
+
+<canvas id="revenueChart"></canvas>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<h3>Recent Bookings</h3>
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>Booking ID</th>
+
+<th>Customer</th>
+
+<th>Package</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+
+<td>Rahul</td>
+
+<td>Goa Tour</td>
+
+<td><span class="badge bg-success">Confirmed</span></td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>Priya</td>
+
+<td>Kerala Tour</td>
+
+<td><span class="badge bg-warning">Pending</span></td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>Amit</td>
+
+<td>Kashmir Tour</td>
+
+<td><span class="badge bg-danger">Cancelled</span></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+
+</html>

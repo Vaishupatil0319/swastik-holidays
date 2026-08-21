@@ -1,0 +1,114 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6fb;
+    padding:40px;
+}
+
+.container{
+    width:95%;
+    margin:auto;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.header h1{
+    color:#0d6efd;
+}
+
+.back-btn{
+    background:#0d6efd;
+    color:white;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:6px;
+}
+
+.back-btn:hover{
+    background:#0b5ed7;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    border-top:6px solid #0d6efd;
+}
+
+.card h2{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+/* .success{border-top-color:#198754;} */
+.pending{border-top-color:#ffc107;}
+.failed{border-top-color:#dc3545;}
+.revenue{border-top-color:#6610f2;}
+/* .rate{border-top-color:#20c997;} */
+.paid{
+    border-top-color:#198754;
+}
+
+.paid h2{
+    color:#198754;
+}
+/* .success h2{color:#198754;} */
+.pending h2{color:#d39e00;}
+.failed h2{color:#dc3545;}
+.revenue h2{color:#6610f2;}
+/* .rate h2{color:#20c997;} */
+.refunded{
+    border-top-color:#6f42c1;
+}
+
+.refunded h2{
+    color:#6f42c1;
+}
+
+.partial{
+    border-top-color:#fd7e14;
+}
+
+.partial h2{
+    color:#fd7e14;
+}
+.rate{
+    border-top-color:#20c997;
+}
+
+.rate h2{
+    color:#20c997;
+}
+.coupon{
+    border-top-color:#20c997;
+}
+
+.coupon h2{
+    color:#20c997;
+}
+
+.nocoupon{
+    border-top-color:#fd7e14;
+}
+
+.nocoupon h2{
+    color:#fd7e14;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Coupon</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/add_coupon.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+
+    <h1>Create Coupon</h1>
+
+    <div>
+
+        <a href="{{ url_for('admin.manage_coupons') }}"
+           class="manage-btn">
+
+            📋 Manage Coupons
+
+        </a>
+
+        <a href="{{ url_for('admin.dashboard') }}"
+           class="back-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+    {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+
+        <label>Coupon Code</label>
+        <input type="text"
+               name="coupon_code"
+               required>
+
+        <label>Discount Type</label>
+
+        <select name="discount_type">
+
+            <option value="Percentage">
+                Percentage
+            </option>
+
+            <option value="Fixed">
+                Fixed Amount
+            </option>
+
+        </select>
+
+        <label>Discount Value</label>
+
+        <input type="number"
+               name="discount_value"
+               step="0.01"
+               required>
+
+        <label>Minimum Booking Amount</label>
+
+        <input type="number"
+               name="minimum_amount"
+               step="0.01"
+               value="0">
+
+        <label>Expiry Date</label>
+
+        <input type="date"
+               name="expiry_date"
+               required>
+
+        <label>Usage Limit</label>
+
+        <input type="number"
+               name="usage_limit"
+               value="1"
+               required>
+
+        <button type="submit">
+
+            Create Coupon
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

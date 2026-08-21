@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Coupon Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/coupon_dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Coupon Dashboard</h1>
+
+        <a href="{{ url_for('admin.dashboard') }}"
+           class="back-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h2>{{ total_coupons }}</h2>
+
+            <p>Total Coupons</p>
+
+        </div>
+
+        <div class="card active">
+
+            <h2>{{ active_coupons }}</h2>
+
+            <p>Active Coupons</p>
+
+        </div>
+
+        <div class="card inactive">
+
+            <h2>{{ inactive_coupons }}</h2>
+
+            <p>Inactive Coupons</p>
+
+        </div>
+
+        <div class="card expired">
+
+            <h2>{{ expired_coupons }}</h2>
+
+            <p>Expired Coupons</p>
+
+        </div>
+
+        <div class="card used">
+
+            <h2>{{ total_used }}</h2>
+
+            <p>Total Times Used</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

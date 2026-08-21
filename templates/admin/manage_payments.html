@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Manage Payments</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/manage_payments.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Manage Payments</h1>
+<a href="{{ url_for('admin.payment_report') }}"
+class="report-btn">
+
+Download Report
+
+</a>
+<a href="{{ url_for('admin.dashboard') }}"
+class="back-btn">
+
+← Dashboard
+
+</a>
+
+</div>
+
+<div class="search-box">
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Search Customer / Package / Method / Transaction ID"
+value="{{ search }}">
+
+<select name="status">
+
+<option value="">All Status</option>
+
+<option value="Paid"
+{% if status=="Paid" %}selected{% endif %}>
+Paid
+</option>
+
+<option value="Pending"
+{% if status=="Pending" %}selected{% endif %}>
+Pending
+</option>
+
+<option value="Failed"
+{% if status=="Failed" %}selected{% endif %}>
+Failed
+</option>
+
+<option value="Refund"
+{% if status=="Refund" %}selected{% endif %}>
+Refund
+</option>
+
+</select>
+
+<button>
+
+Search
+
+</button>
+
+<a href="{{ url_for('admin.manage_payments') }}">
+
+Reset
+
+</a>
+
+</form>
+
+</div>
+
+
+{% if payments %}
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Transaction ID</th>
+
+<th>Customer</th>
+
+<th>Package</th>
+
+<th>Booking ID</th>
+
+<th>Original Amount</th>
+
+<th>Discount</th>
+
+<th>Final Amount</th>
+
+<th>Coupon Code</th>
+
+<th>Method</th>
+
+<th>Gateway</th>
+
+<th>Status</th>
+
+<th>Payment Date</th>
+
+<th>Refund</th>
+
+<th>Remarks</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for payment in payments %}
+
+<tr>
+
+<td>{{ payment.id }}</td>
+
+<td>{{ payment.transaction_id }}</td>
+
+<td>{{ payment.customer_name }}</td>
+
+<td>{{ payment.package_name }}</td>
+
+<td>{{ payment.booking_id }}</td>
+
+<td>₹{{ payment.original_amount }}</td>
+
+<td>₹{{ payment.discount_amount }}</td>
+
+<td>₹{{ payment.final_amount }}</td>
+
+<td>
+
+{% if payment.coupon_code %}
+
+{{ payment.coupon_code }}
+
+{% else %}
+
+-
+
+{% endif %}
+
+</td>
+
+<td>{{ payment.payment_method }}</td>
+
+<td>{{ payment.payment_gateway }}</td>
+
+<td>{{ payment.payment_status }}</td>
+
+<td>{{ payment.payment_date }}</td>
+
+<td>{{ payment.refund_status }}</td>
+
+<td>{{ payment.remarks or "-" }}</td>
+
+<td>
+
+<a href="{{ url_for('admin.edit_payment',
+payment_id=payment.id) }}"
+class="edit-btn">
+
+Edit
+
+</a>
+
+<a href="{{ url_for('admin.delete_payment',
+payment_id=payment.id) }}"
+class="delete-btn"
+onclick="return confirm('Delete this payment?')">
+
+Delete
+
+</a>
+
+</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% else %}
+
+<div class="empty-box">
+
+<h2>No Payments Found</h2>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

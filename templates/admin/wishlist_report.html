@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wishlist Report</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin_wishlist.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Customer Wishlist Report</h1>
+
+        <a href="{{ url_for('admin.dashboard') }}" class="back-btn">
+            Back
+        </a>
+    </div>
+    <div class="search-box">
+
+    <form method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search Customer or Package"
+            value="{{ search }}">
+
+        <button type="submit">
+            Search
+        </button>
+
+        <a href="{{ url_for('admin.wishlist_report') }}">
+            Reset
+        </a>
+
+    </form>
+
+</div>
+
+<div class="top-actions">
+
+    <a href="{{ url_for('admin.export_wishlist_csv') }}"
+       class="export-btn">
+
+        Export CSV
+
+    </a>
+
+</div>
+    {% if wishlist %}
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Package</th>
+                <th>Price</th>
+                <th>Added Date</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for item in wishlist %}
+
+        <tr>
+
+            <td>{{ item.id }}</td>
+            <td>{{ item.customer_name }}</td>
+            <td>{{ item.package_name }}</td>
+            <td>₹{{ item.price }}</td>
+            <td>{{ item.added_date }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="no-data">
+        No wishlist records found.
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

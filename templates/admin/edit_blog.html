@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Edit Blog</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/edit_blog.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Edit Blog</h1>
+
+        <a href="{{ url_for('admin.manage_blogs') }}"
+           class="back-btn">
+
+            ← Back
+
+        </a>
+
+    </div>
+
+    {% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+
+        {% for category,message in messages %}
+
+        <div class="alert {{ category }}">
+
+            {{ message }}
+
+        </div>
+
+        {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+
+    <form
+        method="POST"
+        enctype="multipart/form-data">
+
+        <label>Blog Title</label>
+
+        <input
+            type="text"
+            name="title"
+            value="{{ blog.title }}"
+            required>
+
+        <label>Category</label>
+
+        <select
+            name="category"
+            required>
+
+            <option value="Beach"
+            {% if blog.category=="Beach" %}selected{% endif %}>
+            Beach
+            </option>
+
+            <option value="Hill Station"
+            {% if blog.category=="Hill Station" %}selected{% endif %}>
+            Hill Station
+            </option>
+
+            <option value="Adventure"
+            {% if blog.category=="Adventure" %}selected{% endif %}>
+            Adventure
+            </option>
+
+            <option value="Wildlife"
+            {% if blog.category=="Wildlife" %}selected{% endif %}>
+            Wildlife
+            </option>
+
+            <option value="Temple"
+            {% if blog.category=="Temple" %}selected{% endif %}>
+            Temple
+            </option>
+
+            <option value="International"
+            {% if blog.category=="International" %}selected{% endif %}>
+            International
+            </option>
+
+            <option value="Travel Tips"
+            {% if blog.category=="Travel Tips" %}selected{% endif %}>
+            Travel Tips
+            </option>
+
+        </select>
+
+        <label>Current Image</label>
+
+        <img
+        src="{{ url_for('static',
+        filename='images/' + blog.image) }}"
+        class="preview">
+
+        <label>Change Image (Optional)</label>
+
+        <input
+            type="file"
+            name="image"
+            accept="image/*">
+
+        <label>Short Description</label>
+
+        <textarea
+            name="short_description"
+            rows="3"
+            required>{{ blog.short_description }}</textarea>
+
+        <label>Blog Content</label>
+
+        <textarea
+            name="content"
+            rows="10"
+            required>{{ blog.content }}</textarea>
+
+        <button type="submit">
+
+            Update Blog
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

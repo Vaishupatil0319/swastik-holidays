@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Manage Contact Messages</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/manage_contacts.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Manage Contact Messages</h1>
+
+<a href="{{ url_for('admin.dashboard') }}"
+class="back-btn">
+
+← Dashboard
+
+</a>
+
+</div>
+
+<form method="GET"
+class="search-box">
+
+<input
+type="text"
+name="search"
+placeholder="Search Name / Email / Subject"
+value="{{ search }}">
+
+<button>
+
+Search
+
+</button>
+
+<a href="{{ url_for('admin.manage_contacts') }}">
+
+Reset
+
+</a>
+
+</form>
+
+{% if contacts %}
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Subject</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for contact in contacts %}
+
+<tr>
+
+<td>{{ contact.id }}</td>
+
+<td>{{ contact.name }}</td>
+
+<td>{{ contact.email }}</td>
+
+<td>{{ contact.subject }}</td>
+
+<td>{{ contact.status }}</td>
+
+<td>{{ contact.created_at }}</td>
+
+<td>
+
+<a href="{{ url_for('admin.view_contact',
+contact_id=contact.id) }}"
+class="view-btn">
+
+View
+
+</a>
+
+<a href="{{ url_for('admin.delete_contact',
+contact_id=contact.id) }}"
+class="delete-btn"
+onclick="return confirm('Delete this contact message?')">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% else %}
+
+<div class="empty">
+
+<h2>No Contact Messages Found</h2>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

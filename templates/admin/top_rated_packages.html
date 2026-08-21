@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top Rated Packages</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/top_rated_packages.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Top Rated Packages</h1>
+
+        <a href="{{ url_for('admin.dashboard') }}" class="back-btn">
+            Back
+        </a>
+    </div>
+
+    {% if packages %}
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Rank</th>
+                <th>Package</th>
+                <th>Price</th>
+                <th>Duration</th>
+                <th>Average Rating</th>
+                <th>Total Reviews</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for package in packages %}
+
+        <tr>
+
+            <td>{{ loop.index }}</td>
+
+            <td>{{ package.package_name }}</td>
+
+            <td>₹{{ package.price }}</td>
+
+            <td>{{ package.duration }}</td>
+
+            <td>
+                {% if package.average_rating %}
+                    ⭐ {{ package.average_rating }}/5
+                {% else %}
+                    No Ratings
+                {% endif %}
+            </td>
+
+            <td>{{ package.total_reviews }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="no-data">
+        No packages available.
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

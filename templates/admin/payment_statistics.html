@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Payment Statistics</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/payment_statistics.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Payment Statistics</h1>
+
+        <a href="{{ url_for('admin.dashboard') }}"
+           class="back-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>{{ stats.total_payments }}</h2>
+            <p>Total Payments</p>
+        </div>
+
+        <div class="card paid">
+            <h2>{{ stats.paid_payments }}</h2>
+            <p>Paid</p>
+        </div>
+
+        <div class="card pending">
+            <h2>{{ stats.pending_payments }}</h2>
+            <p>Pending</p>
+        </div>
+
+        <div class="card failed">
+            <h2>{{ stats.failed_payments }}</h2>
+            <p>Failed</p>
+        </div>
+        <div class="card refunded">
+            <h2>{{ stats.refunded_payments }}</h2>
+            <p>Refunded</p>
+        </div>
+        <div class="card partial">
+            <h2>{{ stats.partial_refunds }}</h2>
+            <p>Partial Refunds</p>
+        </div>
+    <div class="card coupon">
+
+        <h2>{{ stats.coupon_used }}</h2>
+
+        <p>Coupon Used</p>
+
+    </div>
+
+    <div class="card nocoupon">
+
+        <h2>{{ stats.no_coupon }}</h2>
+
+        <p>Without Coupon</p>
+
+    </div>
+        <div class="card revenue">
+            <h2>₹{{ stats.total_revenue }}</h2>
+            <p>Total Revenue</p>
+        </div>
+
+        <div class="card rate">
+            <h2>{{ payment_rate }}%</h2>
+            <p>Payment Rate</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

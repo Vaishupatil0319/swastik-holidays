@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Add Package</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/add_package.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Add Tour Package</h2>
+
+<form
+method="POST"
+enctype="multipart/form-data">
+
+<input type="text"
+name="package_name"
+placeholder="Package Name"
+required>
+
+<input type="text"
+name="location"
+placeholder="Location"
+required>
+
+<input type="text"
+name="duration"
+placeholder="Duration"
+required>
+<label>Package Type</label>
+
+<select name="package_type" required>
+
+<option value="">Select Package Type</option>
+
+<option>Family Tour</option>
+
+<option>Honeymoon</option>
+
+<option>Adventure</option>
+
+<option>Pilgrimage</option>
+
+<option>Beach Tour</option>
+
+<option>Hill Station</option>
+
+<option>Wildlife</option>
+
+</select>
+
+<label>Hotel Name</label>
+
+<input
+type="text"
+name="hotel"
+placeholder="Hotel Name"
+required>
+
+<label>Transport</label>
+
+<select name="transport" required>
+
+<option>Bus</option>
+
+<option>Train</option>
+
+<option>Flight</option>
+
+<option>Private Cab</option>
+
+<option>Tempo Traveller</option>
+
+</select>
+
+<label>Meals Included</label>
+
+<input
+type="text"
+name="meals"
+placeholder="Breakfast, Lunch, Dinner">
+
+<label>Pickup Point</label>
+
+<input
+type="text"
+name="pickup_point"
+placeholder="Pickup Location">
+
+<label>Drop Point</label>
+
+<input
+type="text"
+name="drop_point"
+placeholder="Drop Location">
+
+<label>Guide</label>
+
+<select name="guide">
+
+<option>Included</option>
+
+<option>Not Included</option>
+
+</select>
+
+<label>Sightseeing</label>
+
+<textarea
+name="sightseeing"
+placeholder="One place per line"></textarea>
+
+
+<input type="number"
+name="price"
+placeholder="Price"
+required>
+
+<label>Package Image</label>
+
+<input
+type="file"
+name="image"
+accept="image/*"
+required>
+
+<textarea
+name="description"
+placeholder="Package Description"
+required></textarea>
+
+<button type="submit">
+Add Package
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

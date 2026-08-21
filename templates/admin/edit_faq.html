@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Edit FAQ</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/edit_faq.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Edit FAQ</h1>
+
+<a href="{{ url_for('admin.manage_faq') }}"
+class="back-btn">
+
+← Back
+
+</a>
+
+</div>
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+
+{% for category,message in messages %}
+
+<div class="alert {{ category }}">
+
+{{ message }}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
+<form method="POST">
+
+<label>Question</label>
+
+<input
+type="text"
+name="question"
+value="{{ faq.question }}"
+required>
+
+<label>Answer</label>
+
+<textarea
+name="answer"
+rows="8"
+required>{{ faq.answer }}</textarea>
+
+<label>Display Order</label>
+
+<input
+type="number"
+name="display_order"
+value="{{ faq.display_order }}"
+required>
+
+<label>Status</label>
+
+<select name="status">
+
+<option value="Active"
+{% if faq.status=="Active" %}
+selected
+{% endif %}>
+
+Active
+
+</option>
+
+<option value="Inactive"
+{% if faq.status=="Inactive" %}
+selected
+{% endif %}>
+
+Inactive
+
+</option>
+
+</select>
+
+<button type="submit">
+
+Update FAQ
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

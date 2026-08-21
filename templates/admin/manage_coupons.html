@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Manage Coupons</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/manage_coupons.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+<div class="header">
+
+    <h1>Manage Coupons</h1>
+
+    <div>
+
+        <a href="{{ url_for('admin.add_coupon') }}"
+           class="add-btn">
+
+            + Create Coupon
+
+        </a>
+         <a href="{{ url_for('admin.coupon_report') }}"
+           class="report-btn">
+
+            Download Report
+
+        </a>
+        <a href="{{ url_for('admin.dashboard') }}"
+           class="back-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+
+    <div class="search-box">
+
+        <form method="GET">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search Coupon"
+                value="{{ search }}">
+
+            <button>
+
+                Search
+
+            </button>
+
+            <a href="{{ url_for('admin.manage_coupons') }}">
+
+                Reset
+
+            </a>
+
+        </form>
+
+    </div>
+
+    {% if coupons %}
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>Coupon</th>
+
+            <th>Type</th>
+
+            <th>Discount</th>
+
+            <th>Minimum</th>
+
+            <th>Expiry</th>
+
+            <th>Status</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for coupon in coupons %}
+
+        <tr>
+
+            <td>{{ coupon.coupon_code }}</td>
+
+            <td>{{ coupon.discount_type }}</td>
+
+            <td>
+
+                {% if coupon.discount_type=="Percentage" %}
+
+                    {{ coupon.discount_value }}%
+
+                {% else %}
+
+                    ₹{{ coupon.discount_value }}
+
+                {% endif %}
+
+            </td>
+
+            <td>₹{{ coupon.minimum_amount }}</td>
+
+            <td>{{ coupon.expiry_date }}</td>
+
+            <td>{{ coupon.status }}</td>
+
+<td>
+
+    <a href="{{ url_for('admin.edit_coupon',
+    coupon_id=coupon['id']) }}"
+    class="edit-btn">
+
+        Edit
+
+    </a>
+
+    <a href="{{ url_for('admin.toggle_coupon_status',
+    coupon_id=coupon['id']) }}"
+    class="status-btn">
+
+        {% if coupon.status=="Active" %}
+            Deactivate
+        {% else %}
+            Activate
+        {% endif %}
+
+    </a>
+
+    <a href="{{ url_for('admin.delete_coupon',
+    coupon_id=coupon['id']) }}"
+    class="delete-btn"
+    onclick="return confirm('Delete this coupon?')">
+
+        Delete
+
+    </a>
+
+</td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty-box">
+
+        <h2>No Coupons Found</h2>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

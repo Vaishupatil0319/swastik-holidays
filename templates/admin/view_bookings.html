@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Customer Bookings</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/view_bookings.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Customer Bookings</h2>
+<form method="GET" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Customer"
+        value="{{ search }}">
+
+    <select name="status">
+
+        <option value="">All Status</option>
+
+        <option value="Pending"
+        {% if status=="Pending" %}selected{% endif %}>
+        Pending
+        </option>
+
+        <option value="Confirmed"
+        {% if status=="Confirmed" %}selected{% endif %}>
+        Confirmed
+        </option>
+
+        <option value="Cancelled"
+        {% if status=="Cancelled" %}selected{% endif %}>
+        Cancelled
+        </option>
+
+    </select>
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+<table>
+
+<tr>
+
+<th>ID</th>
+<th>Customer</th>
+<th>Email</th>
+<th>Mobile</th>
+<th>Package</th>
+<th>Location</th>
+<th>Travel Date</th>
+<th>Travelers</th>
+<th>Status</th>
+<th>Booked On</th>
+<th>Action</th>
+
+</tr>
+
+{% for booking in bookings %}
+
+<tr>
+
+<td>{{ booking.id }}</td>
+
+<td>{{ booking.name }}</td>
+
+<td>{{ booking.email }}</td>
+
+<td>{{ booking.mobile }}</td>
+
+<td>{{ booking.package_name }}</td>
+
+<td>{{ booking.location }}</td>
+
+<td>{{ booking.travel_date }}</td>
+
+<td>{{ booking.travelers }}</td>
+
+<td>
+    <span class="status {{ booking.status|lower }}">
+        {{ booking.status }}
+    </span>
+</td>
+
+<td>{{ booking.booking_date }}</td>
+
+<td>
+
+        <a href="/admin/booking/{{ booking.id }}" class="view-btn">
+            📋 View Bookings
+        </a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+
+</html>

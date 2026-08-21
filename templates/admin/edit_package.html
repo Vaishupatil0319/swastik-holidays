@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Edit Package</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/add_package.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Edit Tour Package</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input
+            type="text"
+            name="package_name"
+            value="{{ package.package_name }}"
+            placeholder="Package Name"
+            required>
+
+        <input
+            type="text"
+            name="location"
+            value="{{ package.location }}"
+            placeholder="Location"
+            required>
+
+        <input
+            type="text"
+            name="duration"
+            value="{{ package.duration }}"
+            placeholder="Duration"
+            required>
+
+        <input
+            type="number"
+            step="0.01"
+            name="price"
+            value="{{ package.price }}"
+            placeholder="Price"
+            required>
+
+        <input
+            type="text"
+            name="hotel"
+            value="{{ package.hotel }}"
+            placeholder="Hotel Name"
+            required>
+
+        <select name="hotel_type">
+
+            <option value="3 Star"
+                {% if package.hotel_type=="3 Star" %}selected{% endif %}>
+                3 Star
+            </option>
+
+            <option value="4 Star"
+                {% if package.hotel_type=="4 Star" %}selected{% endif %}>
+                4 Star
+            </option>
+
+            <option value="5 Star"
+                {% if package.hotel_type=="5 Star" %}selected{% endif %}>
+                5 Star
+            </option>
+
+        </select>
+
+        <input
+            type="text"
+            name="transport"
+            value="{{ package.transport }}"
+            placeholder="Transport">
+
+        <input
+            type="text"
+            name="meals"
+            value="{{ package.meals }}"
+            placeholder="Meals">
+
+        <input
+            type="text"
+            name="pickup_point"
+            value="{{ package.pickup_point }}"
+            placeholder="Pickup Point">
+
+        <input
+            type="text"
+            name="drop_point"
+            value="{{ package.drop_point }}"
+            placeholder="Drop Point">
+
+        <input
+            type="text"
+            name="guide"
+            value="{{ package.guide }}"
+            placeholder="Guide Name">
+
+        <textarea
+            name="sightseeing"
+            placeholder="Sightseeing Places">{{ package.sightseeing }}</textarea>
+
+        <select name="package_type">
+
+            <option value="Family"
+                {% if package.package_type=="Family" %}selected{% endif %}>
+                Family
+            </option>
+
+            <option value="Honeymoon"
+                {% if package.package_type=="Honeymoon" %}selected{% endif %}>
+                Honeymoon
+            </option>
+
+            <option value="Adventure"
+                {% if package.package_type=="Adventure" %}selected{% endif %}>
+                Adventure
+            </option>
+
+            <option value="Luxury"
+                {% if package.package_type=="Luxury" %}selected{% endif %}>
+                Luxury
+            </option>
+
+        </select>
+
+        <textarea
+            name="description"
+            placeholder="Package Description"
+            required>{{ package.description }}</textarea>
+
+            <input
+            type="file"
+            name="image"
+            accept="image/*">
+
+        {% if package.image %}
+            <p>Current Image:</p>
+            <img src="{{ url_for('static', filename='images/' + package.image) }}"
+                 width="150">
+        {% endif %}
+
+        <label>Status</label>
+
+        <select name="status">
+
+            <option value="Available"
+                {% if package.status=="Available" %}selected{% endif %}>
+                Available
+            </option>
+
+            <option value="Unavailable"
+                {% if package.status=="Unavailable" %}selected{% endif %}>
+                Unavailable
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Update Package
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    padding:40px;
+}
+
+.container{
+    width:95%;
+    margin:auto;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.header h1{
+    color:#0d6efd;
+}
+
+.back-btn{
+    text-decoration:none;
+    background:#0d6efd;
+    color:white;
+    padding:10px 18px;
+    border-radius:6px;
+}
+
+.back-btn:hover{
+    background:#0b5ed7;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    border-top:6px solid #0d6efd;
+}
+
+.card h2{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.active{
+    border-top-color:#198754;
+}
+
+.inactive{
+    border-top-color:#6c757d;
+}
+
+.expired{
+    border-top-color:#dc3545;
+}
+
+.used{
+    border-top-color:#ffc107;
+}
+
+.active h2{
+    color:#198754;
+}
+
+.inactive h2{
+    color:#6c757d;
+}
+
+.expired h2{
+    color:#dc3545;
+}
+
+.used h2{
+    color:#d39e00;
+}

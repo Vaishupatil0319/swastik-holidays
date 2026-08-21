@@ -1,0 +1,171 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+padding:35px;
+}
+
+.container{
+width:95%;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.header h1{
+color:#0d6efd;
+}
+
+.back-btn{
+text-decoration:none;
+background:#0d6efd;
+color:white;
+padding:10px 18px;
+border-radius:6px;
+}
+
+.back-btn:hover{
+background:#0b5ed7;
+}
+
+.search-box{
+margin-bottom:25px;
+}
+
+.search-box form{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.search-box input{
+padding:10px;
+width:320px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+.search-box button{
+background:#198754;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.search-box button:hover{
+background:#157347;
+}
+
+.search-box a{
+background:#6c757d;
+color:white;
+padding:10px 18px;
+text-decoration:none;
+border-radius:6px;
+}
+
+.search-box a:hover{
+background:#5c636a;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+thead{
+background:#0d6efd;
+color:white;
+}
+
+th,td{
+padding:14px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+tbody tr:nth-child(even){
+background:#f8f9fa;
+}
+
+tbody tr:hover{
+background:#eef4ff;
+}
+
+.empty-box{
+padding:50px;
+text-align:center;
+color:#666;
+font-size:18px;
+}
+.search-box select{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.edit-btn{
+    display:inline-block;
+    background:#198754;
+    color:white;
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:5px;
+    margin-right:5px;
+}
+
+.edit-btn:hover{
+    background:#157347;
+}
+
+.delete-btn{
+    display:inline-block;
+    background:#dc3545;
+    color:white;
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:5px;
+}
+
+.delete-btn:hover{
+    background:#bb2d3b;
+}
+.report-btn{
+
+    background:#198754;
+    color:white;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:6px;
+    margin-right:10px;
+}
+
+.report-btn:hover{
+
+    background:#157347;
+}
+table{
+    width:100%;
+    min-width:1600px;
+    border-collapse:collapse;
+}
+
+.container{
+    overflow-x:auto;
+}

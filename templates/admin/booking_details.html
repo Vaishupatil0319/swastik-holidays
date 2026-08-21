@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Booking Details</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/booking_details.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Booking Details</h2>
+
+<div class="card">
+
+<h3>Customer Information</h3>
+
+<p><strong>Name:</strong> {{ booking.name }}</p>
+<p><strong>Email:</strong> {{ booking.email }}</p>
+<p><strong>Mobile:</strong> {{ booking.mobile }}</p>
+<p><strong>Address:</strong> {{ booking.address }}</p>
+
+<hr>
+
+<h3>Package Information</h3>
+
+<p><strong>Package:</strong> {{ booking.package_name }}</p>
+<p><strong>Location:</strong> {{ booking.location }}</p>
+<p><strong>Duration:</strong> {{ booking.duration }}</p>
+<p><strong>Price:</strong> ₹{{ booking.price }}</p>
+
+<hr>
+
+<h3>Booking Information</h3>
+
+<p><strong>Travel Date:</strong> {{ booking.travel_date }}</p>
+<p><strong>Travelers:</strong> {{ booking.travelers }}</p>
+<p><strong>Booking Date:</strong> {{ booking.booking_date }}</p>
+
+<p>
+<strong>Status:</strong>
+
+<span class="status {{ booking.status|lower }}">
+{{ booking.status }}
+</span>
+
+</p>
+
+<div class="buttons">
+
+    <a href="/admin/bookings" class="back-btn">
+        ← Back
+    </a>
+
+    {% if booking.status == "Pending" %}
+
+        <a href="/admin/approve_booking/{{ booking.id }}"
+           class="approve-btn"
+           onclick="return confirm('Approve this booking?')">
+            Approve
+        </a>
+
+        <a href="/admin/reject_booking/{{ booking.id }}"
+           class="reject-btn"
+           onclick="return confirm('Reject this booking?')">
+            Reject
+        </a>
+
+    {% elif booking.status == "Confirmed" %}
+
+        <span class="approved-label">
+            ✅ Booking Approved
+        </span>
+
+    {% else %}
+
+        <span class="rejected-label">
+            ❌ Booking Rejected
+        </span>
+
+    {% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Statistics</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/review_statistics.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Review Statistics</h1>
+
+    <div class="cards">
+
+    <div class="card">
+        <h2>{{ stats.total_reviews or 0 }}</h2>
+        <p>Total Reviews</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.average_rating or 0 }}/5</h2>
+        <p>Average Rating</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.pending_reviews or 0 }}</h2>
+        <p>Pending Reviews</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.approved_reviews or 0 }}</h2>
+        <p>Approved Reviews</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.rejected_reviews or 0 }}</h2>
+        <p>Rejected Reviews</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.five_star or 0 }}</h2>
+        <p>⭐⭐⭐⭐⭐ Reviews</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.four_star or 0 }}</h2>
+        <p>⭐⭐⭐⭐ Reviews</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.three_star or 0 }}</h2>
+        <p>⭐⭐⭐ Reviews</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.two_star or 0 }}</h2>
+        <p>⭐⭐ Reviews</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ stats.one_star or 0 }}</h2>
+        <p>⭐ Reviews</p>
+    </div>
+
+</div>
+
+    <br>
+
+    <a href="{{ url_for('admin.dashboard') }}" class="back-btn">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+
+Reply Review
+
+</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/reply_review.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+
+Reply to Customer Review
+
+</h1>
+
+<div class="review-box">
+
+<h3>
+
+{{ review.customer_name }}
+
+</h3>
+
+<p>
+
+{{ review.review }}
+
+</p>
+
+</div>
+
+<form method="POST">
+
+<textarea
+name="reply"
+rows="6"
+required>{{ review.admin_reply or '' }}</textarea>
+
+<br><br>
+
+<button type="submit">
+
+Save Reply
+
+</button>
+
+<a href="{{ url_for('admin.reviews') }}">
+
+Cancel
+
+</a>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
