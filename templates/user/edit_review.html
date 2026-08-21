@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Review</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/edit_review.css') }}">
+</head>
+<body>
+
+<div class="review-container">
+
+    <h2>Edit Review</h2>
+
+    <form method="POST">
+
+        <label>Rating</label>
+
+        <select name="rating" required>
+
+            {% for i in range(5,0,-1) %}
+
+            <option value="{{ i }}"
+            {% if review.rating == i %}selected{% endif %}>
+                {{ i }} Star
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <label>Review</label>
+
+        <textarea
+            name="review"
+            rows="6"
+            required>{{ review.review }}</textarea>
+
+        <button type="submit">
+            Update Review
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

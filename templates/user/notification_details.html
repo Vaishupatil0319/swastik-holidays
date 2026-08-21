@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+
+Notification Details
+
+</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/notification_details.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="{{ url_for('user.notifications') }}"
+class="back-btn">
+
+← Back
+
+</a>
+
+<div class="card">
+
+<h1>
+
+{{ notification.title }}
+
+</h1>
+
+<div class="type">
+
+{% if notification.notification_type=="Package" %}
+
+📦 <strong>Package Update</strong>
+
+{% elif notification.notification_type=="Offer" %}
+
+💰 <strong>Special Offer</strong>
+
+{% elif notification.notification_type=="Booking" %}
+
+📅 <strong>Booking Update</strong>
+
+{% elif notification.notification_type=="Review" %}
+
+⭐ <strong>Review Reminder</strong>
+
+{% elif notification.notification_type=="Festival" %}
+
+🎉 <strong>Festival Offer</strong>
+
+{% else %}
+
+📢 <strong>General Announcement</strong>
+
+{% endif %}
+
+</div>
+
+<div class="date">
+
+{{ notification.created_at }}
+
+</div>
+
+<hr>
+
+<p>
+
+{{ notification.message }}
+
+</p>
+
+<div class="status">
+
+Status :
+
+{% if notification.status=="Unread" %}
+
+<span class="unread">
+
+Unread
+
+</span>
+
+{% else %}
+
+<span class="read">
+
+Read
+
+</span>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

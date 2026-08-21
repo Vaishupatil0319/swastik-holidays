@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Travel Blogs</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/travel_blogs.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Travel Blogs</h1>
+
+        <a href="{{ url_for('user.dashboard') }}"
+           class="back-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+    {% if blogs %}
+
+    <div class="blog-grid">
+
+        {% for blog in blogs %}
+
+        <div class="blog-card">
+
+            <img
+            src="{{ url_for('static',
+            filename='images/' + blog.image) }}">
+
+            <div class="content">
+
+                <span class="category">
+
+                    {{ blog.category }}
+
+                </span>
+
+                <h2>
+
+                    {{ blog.title }}
+
+                </h2>
+
+                <p>
+
+                    {{ blog.short_description }}
+
+                </p>
+
+                <a href="{{ url_for('user.blog_details',
+                blog_id=blog.id) }}"
+                class="read-btn">
+
+                    Read More
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+
+        <h2>No Blogs Available</h2>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

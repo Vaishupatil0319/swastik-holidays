@@ -1,0 +1,144 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6fb;
+    padding:40px;
+}
+
+.container{
+    width:75%;
+    margin:auto;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    color:#0d6efd;
+}
+
+.back-btn{
+    background:#0d6efd;
+    color:white;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:6px;
+}
+
+.back-btn:hover{
+    background:#0b5ed7;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h2{
+    margin-bottom:20px;
+    color:#0d6efd;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+td{
+    padding:14px;
+    border:1px solid #ddd;
+}
+
+td:first-child{
+    font-weight:bold;
+    width:35%;
+    background:#f8f9fa;
+}
+.payment-card{
+
+    margin-top:30px;
+
+    background:#ffffff;
+
+    border-radius:10px;
+
+    padding:25px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+}
+
+.payment-card h2{
+
+    margin-bottom:20px;
+
+    color:#0d6efd;
+
+}
+
+.payment-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.payment-table th{
+
+    width:35%;
+
+    background:#f8f9fa;
+
+    text-align:left;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+}
+
+.payment-table td{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+}
+.action-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.download-btn{
+
+    background:#198754;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:6px;
+
+}
+
+.download-btn:hover{
+
+    background:#157347;
+
+}
+

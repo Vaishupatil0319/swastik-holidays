@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swastik Holidays</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/user_style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        Swastik Holidays
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="/">Home</a></li>
+
+        <li><a href="/packages">Packages</a></li>
+
+        <li><a href="/about">About</a></li>
+
+        <li><a href="/contact">Contact</a></li>
+
+    </ul>
+
+    <div class="nav-buttons">
+
+        <a href="/login" class="login-btn">Login</a>
+
+        <a href="/register" class="register-btn">Register</a>
+
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Explore Incredible India</h1>
+
+        <p>Your Dream Journey Starts Here</p>
+
+        <a href="/packages" class="explore-btn">
+
+            Explore Tours
+
+        </a>
+
+    </div>
+
+</section>
+<!-- About Section -->
+
+<section class="about">
+
+    <div class="about-image">
+
+        <img src="/static/images/about.jpeg" alt="About">
+
+    </div>
+
+    <div class="about-content">
+
+        <h2>About Swastik Holidays</h2>
+
+        <p>
+            Swastik Holidays is a trusted travel company that offers
+            exciting tour packages across India. We provide comfortable
+            accommodation, safe transportation, professional guides,
+            and memorable travel experiences.
+        </p>
+
+        <h3>Our Mission</h3>
+
+        <p>
+            To make travel affordable, safe, and enjoyable for everyone.
+        </p>
+
+        <h3>Our Vision</h3>
+
+        <p>
+            To become one of India's most trusted travel companies.
+        </p>
+
+    </div>
+
+</section>
+<section class="why-us">
+
+    <h2>Why Choose Us?</h2>
+
+    <div class="features">
+
+        <div class="feature-card">
+
+            <h3>Affordable Packages</h3>
+
+            <p>Best prices for every destination.</p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>Trusted Guides</h3>
+
+            <p>Experienced and friendly tour guides.</p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>24×7 Support</h3>
+
+            <p>Customer support available anytime.</p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h3>Safe Journey</h3>
+
+            <p>Your safety is our first priority.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Popular Destinations -->
+
+<section class="destinations">
+
+    <h2>Popular Destinations</h2>
+
+    <div class="destination-grid">
+
+        <div class="destination-card">
+            <img src="/static/images/goa.jpeg">
+            <h3>Goa</h3>
+            <p>Beaches • Night Life • Water Sports</p>
+        </div>
+
+        <div class="destination-card">
+            <img src="/static/images/kashmir.jpeg">
+            <h3>Kashmir</h3>
+            <p>Heaven on Earth</p>
+        </div>
+
+        <div class="destination-card">
+            <img src="/static/images/kerala.jpeg">
+            <h3>Kerala</h3>
+            <p>Backwaters • Houseboats</p>
+        </div>
+
+        <div class="destination-card">
+            <img src="/static/images/ladakh.jpeg">
+            <h3>Ladakh</h3>
+            <p>Adventure • Mountains</p>
+        </div>
+
+        <div class="destination-card">
+            <img src="/static/images/manali.jpeg">
+            <h3>Manali</h3>
+            <p>Snow • Trekking</p>
+        </div>
+
+        <div class="destination-card">
+            <img src="/static/images/mahabaleshwar.jpeg">
+            <h3>Mahabaleshwar</h3>
+            <p>Hill Station • Strawberry Farms</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Best Tour Packages -->
+
+<section class="packages">
+
+    <h2>Best Tour Packages</h2>
+
+    <div class="package-grid">
+
+        <div class="package-card">
+            <img src="/static/images/package1.jpeg" alt="Goa Package">
+
+            <div class="package-content">
+                <h3>Goa Beach Tour</h3>
+
+                <p><strong>Price:</strong> ₹12,999</p>
+
+                <p><strong>Duration:</strong> 4 Days / 3 Nights</p>
+
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+
+                <a href="/packages" class="package-btn">Explore Details</a>
+            </div>
+        </div>
+
+        <div class="package-card">
+            <img src="/static/images/package2.jpeg" alt="Kashmir Package">
+
+            <div class="package-content">
+                <h3>Kashmir Paradise</h3>
+
+                <p><strong>Price:</strong> ₹24,999</p>
+
+                <p><strong>Duration:</strong> 6 Days / 5 Nights</p>
+
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+
+                <a href="/packages" class="package-btn">Explore Details</a>
+            </div>
+        </div>
+
+        <div class="package-card">
+            <img src="/static/images/package3.jpeg" alt="Kerala Package">
+
+            <div class="package-content">
+                <h3>Kerala Backwaters</h3>
+
+                <p><strong>Price:</strong> ₹18,499</p>
+
+                <p><strong>Duration:</strong> 5 Days / 4 Nights</p>
+
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐☆</p>
+
+                <a href="/packages" class="package-btn">Explore Details</a>
+            </div>
+        </div>
+
+        <div class="package-card">
+            <img src="/static/images/package4.jpeg" alt="Manali Package">
+
+            <div class="package-content">
+                <h3>Manali Adventure</h3>
+
+                <p><strong>Price:</strong> ₹15,999</p>
+
+                <p><strong>Duration:</strong> 5 Days / 4 Nights</p>
+
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+
+                <a href="/packages" class="package-btn">Explore Details</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Customer Reviews -->
+
+<section class="reviews">
+
+    <h2>What Our Customers Say</h2>
+
+    <div class="review-grid">
+
+        <div class="review-card">
+
+            <img src="/static/images/user1.jpeg" alt="Customer">
+
+            <h3>Rahul Sharma</h3>
+
+            <p class="stars">★★★★★</p>
+
+            <p>
+                Amazing experience! Hotels were excellent and the trip
+                was well managed. Highly recommended.
+            </p>
+
+        </div>
+
+        <div class="review-card">
+
+            <img src="/static/images/user2.jpeg" alt="Customer">
+
+            <h3>Priya Patil</h3>
+
+            <p class="stars">★★★★★</p>
+
+            <p>
+                The Goa package was fantastic. Everything was perfectly
+                organized from booking to return.
+            </p>
+
+        </div>
+
+        <div class="review-card">
+
+            <img src="/static/images/user3.jpeg" alt="Customer">
+
+            <h3>Amit Deshmukh</h3>
+
+            <p class="stars">★★★★☆</p>
+
+            <p>
+                Friendly guides, clean hotels and affordable prices.
+                Will definitely travel again.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Gallery Section -->
+
+<section class="gallery">
+
+    <h2>Travel Gallery</h2>
+
+    <div class="gallery-grid">
+
+        <img src="/static/images/gallery1.jpeg" alt="Gallery 1">
+
+        <img src="/static/images/gallery2.jpeg" alt="Gallery 2">
+
+        <img src="/static/images/gallery3.jpeg" alt="Gallery 3">
+
+        <img src="/static/images/gallery4.jpeg" alt="Gallery 4">
+
+        <img src="/static/images/gallery5.jpeg" alt="Gallery 5">
+
+        <img src="/static/images/gallery6.jpeg" alt="Gallery 6">
+
+    </div>
+
+</section>
+
+<!-- Contact Section -->
+
+<section class="contact" id="contact"></section>
+
+    <h2>Contact Us</h2>
+
+    <div class="contact-container">
+
+        <div class="contact-form">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                <div class="alert {{ category }}">
+
+                    {{ message }}
+
+                </div>
+
+                {% endfor %}
+
+            {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('user.contact') }}"
+                method="POST">
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    required>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    required>
+
+                <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    required>
+
+                <textarea
+                    name="message"
+                    rows="6"
+                    placeholder="Your Message"
+                    required></textarea>
+
+                <button type="submit">
+
+                    Send Message
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="contact-info">
+
+            <h3>Swastik Holidays</h3>
+
+            <p><strong>📍 Address:</strong><br>
+            Shivaji Nagar, Pune, Maharashtra</p>
+
+            <p><strong>📞 Phone:</strong><br>
+            +91 9876543210</p>
+
+            <p><strong>✉ Email:</strong><br>
+            info@swastikholidays.com</p>
+
+            <iframe
+                src="https://www.google.com/maps?q=Pune&output=embed"
+                width="100%"
+                height="250"
+                style="border:0;border-radius:10px;"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Footer -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-box">
+
+            <h3>Swastik Holidays</h3>
+
+            <p>
+                We provide affordable, safe and memorable travel
+                experiences across India with excellent customer service.
+            </p>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Contact</h3>
+
+            <p>📍 Pune, Maharashtra</p>
+
+            <p>📞 +91 9876543210</p>
+
+            <p>✉ info@swastikholidays.com</p>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Follow Us</h3>
+
+            <div class="social-icons">
+
+                <a href="#">📘</a>
+
+                <a href="#">📷</a>
+
+                <a href="#">▶</a>
+
+                <a href="#">🐦</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <p class="copyright">
+        © 2026 Swastik Holidays. All Rights Reserved.
+    </p>
+
+</footer>
+
+<script src="{{ url_for('static', filename='js/user_script.js') }}"></script>
+
+</body>
+
+</html>

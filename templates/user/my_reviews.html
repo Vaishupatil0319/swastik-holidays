@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reviews</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/my_reviews.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+    <a href="{{ url_for('user.dashboard') }}" class="back-btn">
+        ← Back
+    </a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+
+        {% for category, message in messages %}
+
+            <div class="alert {{ category }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+    {% endwith %}
+
+
+    <h2>My Reviews</h2>
+
+    <div class="stats">
+
+    <div class="card">
+        <h3>{{ stats.total_reviews or 0 }}</h3>
+        <p>Total Reviews</p>
+    </div>
+
+    <div class="card">
+        <h3>{{ stats.average_rating or 0 }}/5</h3>
+        <p>Average Rating</p>
+    </div>
+
+    <div class="card">
+        <h3>{{ stats.approved_reviews or 0 }}</h3>
+        <p>Approved</p>
+    </div>
+
+    <div class="card">
+        <h3>{{ stats.pending_reviews or 0 }}</h3>
+        <p>Pending</p>
+    </div>
+
+    </div>
+
+    {% if reviews %}
+
+    <div class="search-box">
+
+<form method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Package"
+        value="{{ search }}">
+
+    <select name="rating">
+
+        <option value="">All Ratings</option>
+
+        <option value="5"
+        {% if rating=="5" %}selected{% endif %}>
+            ⭐⭐⭐⭐⭐
+        </option>
+
+        <option value="4"
+        {% if rating=="4" %}selected{% endif %}>
+            ⭐⭐⭐⭐
+        </option>
+
+        <option value="3"
+        {% if rating=="3" %}selected{% endif %}>
+            ⭐⭐⭐
+        </option>
+
+        <option value="2"
+        {% if rating=="2" %}selected{% endif %}>
+            ⭐⭐
+        </option>
+
+        <option value="1"
+        {% if rating=="1" %}selected{% endif %}>
+            ⭐
+        </option>
+
+    </select>
+
+    <select name="status">
+
+        <option value="">All Status</option>
+
+        <option value="Approved"
+        {% if status=="Approved" %}selected{% endif %}>
+            Approved
+        </option>
+
+        <option value="Pending"
+        {% if status=="Pending" %}selected{% endif %}>
+            Pending
+        </option>
+
+        <option value="Rejected"
+        {% if status=="Rejected" %}selected{% endif %}>
+            Rejected
+        </option>
+
+    </select>
+
+    <button type="submit">
+
+        Search
+
+    </button>
+
+    <a href="{{ url_for('user.my_reviews') }}"
+       class="reset-btn">
+
+        Reset
+
+    </a>
+
+</form>
+
+</div>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Package</th>
+                <th>Rating</th>
+                <th>Review</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Admin Reply</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for review in reviews %}
+
+        <tr>
+
+            <td>{{ review.package_name }}</td>
+
+            <td>
+                {% for i in range(review.rating) %}
+                    ⭐
+                {% endfor %}
+            </td>
+
+            <td>{{ review.review }}</td>
+
+            <td>{{ review.review_date.strftime('%d-%m-%Y') }}</td>
+            <td>
+
+{% if review.review_status=="Approved" %}
+
+<span class="approved">
+
+Approved
+
+</span>
+
+{% elif review.review_status=="Rejected" %}
+
+<span class="rejected">
+
+Rejected
+
+</span>
+
+{% else %}
+
+<span class="pending">
+
+Pending
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if review.admin_reply %}
+
+{{ review.admin_reply }}
+
+{% else %}
+
+-
+
+{% endif %}
+
+</td>
+
+            <td>
+
+                <a href="{{ url_for('user.edit_review', review_id=review.id) }}"
+                   class="edit-btn">
+                    Edit
+                </a>
+
+                <a href="{{ url_for('user.delete_review', review_id=review.id) }}"
+                   class="delete-btn"
+                   onclick="return confirm('Delete this review?');">
+                    Delete
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty-box">
+
+    <div class="icon">
+
+        ⭐
+
+    </div>
+
+    <h3>
+
+        No Reviews Yet
+
+    </h3>
+
+    <p>
+
+        You haven't reviewed any package yet.
+
+    </p>
+
+    <a href="{{ url_for('user.packages') }}"
+       class="explore-btn">
+
+        Explore Packages
+
+    </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>Swastik Holidays</h2>
+
+    <a href="/dashboard">🏠 Dashboard</a>
+
+    <a href="{{ url_for('user.gallery') }}">
+
+        Gallery
+
+    </a>
+
+    <a href="{{ url_for('user.travel_blogs') }}">
+
+        📝 Travel Blogs
+
+    </a>
+
+    <a href="/packages">📦 Packages</a>
+
+    <a href="/my_bookings">📖 My Bookings</a>
+
+    <a href="{{ url_for('user.wishlist') }}">
+        ❤️ Wishlist
+        <span class="wishlist-count">
+            {{ wishlist_count }}
+        </span>
+    </a>
+
+    <a href="/profile">👤 My Profile</a>
+
+    <a href="{{ url_for('user.my_reviews') }}">
+        ⭐ My Reviews
+    </a>
+
+    
+    <li>
+    <a href="{{ url_for('user.notifications') }}">
+        🔔 Notifications
+
+        {% if unread_count > 0 %}
+            <span class="notification-badge">
+                {{ unread_count }}
+            </span>
+        {% endif %}
+    </a>
+    </li>
+
+    <a href="{{ url_for('user.faq') }}">
+
+        FAQ
+
+    </a>
+
+    <a href="{{ url_for('user.my_payments') }}"
+        class="dashboard-btn">
+
+        💳 My Payments
+
+    </a>
+    
+
+
+    <a href="/logout">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+    <div class="topbar">
+
+        <h2>Welcome {{ customer_name }}</h2>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Bookings</h3>
+            <p>0</p>
+        </div>
+
+        <div class="card">
+            <h3>Upcoming Tours</h3>
+            <p>0</p>
+        </div>
+
+        <div class="card">
+            <h3>Wishlist</h3>
+            <p>0</p>
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <h2>Customer Dashboard</h2>
+
+        <p>
+            Welcome to Swastik Holidays.
+            Your bookings, profile and tour details will appear here.
+        </p>
+
+    </div>
+
+    <div class="notification-widget">
+
+    <div class="widget-header">
+
+        <h2>
+
+            🔔 Latest Notifications
+
+        </h2>
+
+        <a href="{{ url_for('user.notifications') }}">
+
+            View All →
+
+        </a>
+
+    </div>
+
+    {% if latest_notifications %}
+
+        {% for notification in latest_notifications %}
+
+        <div class="notification-item">
+
+            {% if notification.notification_type=="Package" %}
+
+                📦
+
+            {% elif notification.notification_type=="Offer" %}
+
+                💰
+
+            {% elif notification.notification_type=="Booking" %}
+
+                📅
+
+            {% elif notification.notification_type=="Review" %}
+
+                ⭐
+
+            {% elif notification.notification_type=="Festival" %}
+
+                🎉
+
+            {% else %}
+
+                📢
+
+            {% endif %}
+
+            <strong>
+
+                {{ notification.title }}
+
+            </strong>
+
+            <br>
+
+            <small>
+
+                {{ notification.created_at }}
+
+            </small>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>
+
+            No Notifications Available.
+
+        </p>
+
+    {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

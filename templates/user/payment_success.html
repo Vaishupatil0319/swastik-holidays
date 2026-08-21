@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Payment Successful</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/payment_success.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="success-box">
+
+        <h1>✅ Payment Successful</h1>
+
+        <h3>Thank you for booking with Swastik Holidays.</h3>
+
+        <hr>
+
+        <p><strong>Booking ID :</strong> {{ booking.id }}</p>
+
+        <p><strong>Transaction ID :</strong> {{ booking.transaction_id }}</p>
+
+        <p><strong>Package :</strong> {{ booking.package_name }}</p>
+
+        <p><strong>Travelers :</strong> {{ booking.travelers }}</p>
+
+        <p><strong>Payment Method :</strong> {{ booking.payment_method }}</p>
+
+        <p><strong>Total Amount :</strong> ₹{{ total_amount }}</p>
+
+        <p><strong>Status :</strong> {{ booking.payment_status }}</p>
+
+        <br>
+
+        <a href="{{ url_for('user.my_payments') }}"
+           class="btn">
+
+            View My Payments
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Payments</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',
+    filename='css/my_payments.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>My Payments</h1>
+
+        <a href="{{ url_for('user.dashboard') }}"
+           class="back-btn">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+    {% if payments %}
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Transaction ID</th>
+
+            <th>Package</th>
+            <th>Travel Date</th>
+
+            <th>Travelers</th>
+
+            <th>Original Amount</th>
+
+            <th>Discount</th>
+
+            <th>Final Amount</th>
+
+            <th>Coupon</th>
+
+            <th>Method</th>
+
+            <th>Status</th>
+
+            <th>Date</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for payment in payments %}
+
+        <tr>
+
+            <td>{{ payment.id }}</td>
+
+            <td>{{ payment.transaction_id }}</td>
+
+            <td>{{ payment.package_name }}</td>
+
+            <td>{{ payment.travel_date }}</td>
+
+            <td>{{ payment.travelers }}</td>
+
+            <td>₹{{ payment.original_amount }}</td>
+
+            <td>₹{{ payment.discount_amount }}</td>
+
+            <td>₹{{ payment.final_amount }}</td>
+
+            <td>
+
+                {% if payment.coupon_code %}
+
+                    {{ payment.coupon_code }}
+
+                {% else %}
+
+        -
+
+                {% endif %}
+
+            </td>
+
+            <td>{{ payment.payment_method }}</td>
+
+            <!-- <td>{{ payment.payment_status }}</td> -->
+
+            <!-- <td>{{ payment.payment_date }}</td> -->
+
+            
+
+    
+
+            
+
+            <td>
+
+                {% if payment.payment_status=="Paid" %}
+
+                    <span class="paid">
+
+                        Paid
+
+                    </span>
+
+                {% elif payment.payment_status=="Pending" %}
+
+                    <span class="pending">
+
+                        Pending
+
+                    </span>
+
+                {% elif payment.payment_status=="Refunded" %}
+
+                    <span class="refund">
+
+                        Refunded
+
+                    </span>
+
+                {% else %}
+
+                    <span class="failed">
+
+                        Failed
+
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                {{ payment.payment_date.strftime('%d-%m-%Y %I:%M %p') }}
+
+            </td>
+            <td>
+
+                <a href="{{ url_for('user.payment_details',
+                payment_id=payment.id) }}"
+                class="view-btn">
+
+                    View Details
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty-box">
+
+        <h2>No Payments Found</h2>
+
+        <p>You haven't made any payments yet.</p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

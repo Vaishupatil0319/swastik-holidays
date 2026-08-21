@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{{ package.package_name }}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/package_details.css') }}">
+
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <!-- ============================= -->
+    <!-- PACKAGE TITLE -->
+    <!-- ============================= -->
+
+    <h1 class="package-title">
+        {{ package.package_name }}
+    </h1>
+
+
+    <!-- ============================= -->
+    <!-- BASIC INFORMATION -->
+    <!-- ============================= -->
+
+    <div class="basic-section">
+
+        <!-- IMAGE -->
+
+        <div class="image-section">
+
+            <img
+                src="{{ url_for('static', filename='images/' + package.image) }}"
+                alt="{{ package.package_name }}">
+
+        </div>
+
+
+        <!-- BASIC DETAILS -->
+
+        <div class="basic-info">
+
+            <h2>Basic Information</h2>
+
+            <p>
+                <strong>Location :</strong>
+                {{ package.location }}
+            </p>
+
+            <p>
+                <strong>Duration :</strong>
+                {{ package.duration }}
+            </p>
+
+            <p>
+                <strong>Price :</strong>
+                ₹{{ package.price }}
+            </p>
+
+            <p>
+                <strong>Status :</strong>
+
+                {% if package.status == "Available" %}
+
+                    <span class="available">
+                        Available
+                    </span>
+
+                {% else %}
+
+                    <span class="unavailable">
+                        Unavailable
+                    </span>
+
+                {% endif %}
+
+            </p>
+
+            <p>
+                <strong>Package Type :</strong>
+                {{ package.package_type }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- SEPARATOR -->
+    <!-- ============================= -->
+
+    <hr>
+
+
+    <!-- ============================= -->
+    <!-- ACCOMMODATION -->
+    <!-- ============================= -->
+
+    <div class="detail-section">
+
+        <h2>Accommodation</h2>
+
+        <p>
+            <strong>Hotel :</strong>
+            {{ package.hotel }}
+        </p>
+
+        <p>
+            <strong>Hotel Type :</strong>
+            {{ package.hotel_type }}
+        </p>
+
+        <p>
+            <strong>Meals :</strong>
+            {{ package.meals }}
+        </p>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ============================= -->
+    <!-- TRANSPORTATION -->
+    <!-- ============================= -->
+
+    <div class="detail-section">
+
+        <h2>Transportation</h2>
+
+        <p>
+            <strong>Transport :</strong>
+            {{ package.transport }}
+        </p>
+
+        <p>
+            <strong>Pickup Point :</strong>
+            {{ package.pickup_point }}
+        </p>
+
+        <p>
+            <strong>Drop Point :</strong>
+            {{ package.drop_point }}
+        </p>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ============================= -->
+    <!-- GUIDE -->
+    <!-- ============================= -->
+
+    <div class="detail-section">
+
+        <h2>Guide</h2>
+
+        <p>
+            {{ package.guide }}
+        </p>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ============================= -->
+    <!-- SIGHTSEEING -->
+    <!-- ============================= -->
+
+    <div class="detail-section">
+
+        <h2>Sightseeing</h2>
+
+        <p>
+            {{ package.sightseeing }}
+        </p>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ============================= -->
+    <!-- DESCRIPTION -->
+    <!-- ============================= -->
+
+    <div class="detail-section">
+
+        <h2>Description</h2>
+
+        <p>
+            {{ package.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- BUTTONS -->
+    <!-- ============================= -->
+
+    <div class="button-section">
+
+        {% if package.status == "Available" %}
+
+            <a href="{{ url_for('user.book_package', id=package.id) }}"
+               class="book-btn">
+                Book This Package
+            </a>
+
+            <a href="{{ url_for('user.add_to_wishlist', package_id=package.id) }}"
+               class="wishlist-btn">
+                ❤️ Add to Wishlist
+            </a>
+
+        {% else %}
+
+            <span class="unavailable-btn">
+                Package Unavailable
+            </span>
+
+        {% endif %}
+
+
+        <a href="{{ url_for('user.packages') }}"
+           class="back-btn">
+            ← Back to Packages
+        </a>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- RATING SUMMARY -->
+    <!-- ============================= -->
+
+    <div class="rating-summary">
+
+        {% if rating_data.total_reviews > 0 %}
+
+            <h3>
+                ⭐ {{ rating_data.average_rating }}/5
+            </h3>
+
+            <p>
+                Based on {{ rating_data.total_reviews }} review(s)
+            </p>
+
+        {% else %}
+
+            <h3>
+                No Ratings Yet
+            </h3>
+
+            <p>
+                Be the first customer to review this package.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- CUSTOMER REVIEWS -->
+    <!-- ============================= -->
+
+    <div class="reviews-section">
+
+        <h2>Customer Reviews</h2>
+
+
+        {% if reviews %}
+
+            {% for review in reviews %}
+
+                <div class="review-card">
+
+                    <div class="review-header">
+
+                        <h4>
+                            {{ review.customer_name }}
+                        </h4>
+
+                        <span class="review-date">
+
+                            {% if review.review_date %}
+                                {{ review.review_date.strftime('%d-%m-%Y') }}
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="stars">
+
+                        {% for i in range(review.rating) %}
+                            ⭐
+                        {% endfor %}
+
+                    </div>
+
+
+                    <p class="review-text">
+                        {{ review.review }}
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="no-review">
+
+                No reviews available for this package yet.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

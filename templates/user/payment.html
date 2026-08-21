@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Payment</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/payment.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Payment</h1>
+
+    <div class="summary">
+
+        <h3>Booking Summary</h3>
+
+        <p><strong>Booking ID :</strong> {{ booking.id }}</p>
+
+        <p><strong>Package :</strong> {{ booking.package_name }}</p>
+
+        <p><strong>Travel Date :</strong> {{ booking.travel_date }}</p>
+
+        <p><strong>Travelers :</strong> {{ booking.travelers }}</p>
+
+        <p>
+            <strong>Total Amount :</strong>
+            ₹{{ booking.total_amount }}
+        </p>
+
+        <p>
+            <strong>Discount :</strong>
+            <span id="discount">
+
+            ₹{{ discount }}
+
+            </span>
+        </p>
+
+        <p>
+            <strong>Final Amount :</strong>
+            <span id="finalAmount">
+
+            ₹{{ final_amount }}
+
+            </span>
+        </p>
+
+    </div>
+
+    <div class="coupon-box">
+
+        <h3>Apply Coupon</h3>
+
+        <div class="coupon-form">
+
+            <input
+                type="text"
+                id="coupon_code"
+                placeholder="Enter Coupon Code">
+
+            <button
+                type="button"
+                id="applyCouponBtn">
+
+                Apply
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div
+        id="couponMessage"
+        class="coupon-message">
+
+    </div>
+
+    <form
+        action="{{ url_for('user.make_payment') }}"
+        method="POST">
+
+        <input
+            type="hidden"
+            id="bookingId"
+            name="booking_id"
+            value="{{ booking.id }}">
+
+        <input
+            type="hidden"
+            name="discount"
+            id="discountInput"
+            value="0">
+
+        <input
+            type="hidden"
+            name="final_amount"
+            id="finalAmountInput"
+            value="{{ booking.total_amount }}">
+        
+        <input
+            type="hidden"
+            name="coupon_code"
+            id="couponCodeInput"
+            value="">
+
+        <label>
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="UPI"
+                required>
+
+            UPI
+
+        </label>
+
+        <br><br>
+
+        <label>
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="Credit Card">
+
+            Credit Card
+
+        </label>
+
+        <br><br>
+
+        <label>
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="Debit Card">
+
+            Debit Card
+
+        </label>
+
+        <br><br>
+
+        <label>
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="Net Banking">
+
+            Net Banking
+
+        </label>
+
+        <br><br>
+
+        <label>
+
+            <input
+                type="radio"
+                name="payment_method"
+                value="Cash">
+
+            Cash
+
+        </label>
+
+        <br><br>
+
+        <button type="submit">
+
+            Pay Now
+
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+document.getElementById("applyCouponBtn").addEventListener("click", function(){
+
+    let coupon = document.getElementById("coupon_code").value;
+
+    let booking = document.getElementById("bookingId").value;
+
+    let formData = new FormData();
+
+    formData.append("coupon_code", coupon);
+
+    formData.append("booking_id", booking);
+
+    fetch("/apply_coupon",{
+
+        method:"POST",
+
+        body:formData
+
+    })
+
+    .then(response=>response.json())
+
+    .then(data=>{
+
+        if(data.success){
+
+            document.getElementById("couponMessage").innerHTML =
+                data.message;
+
+            document.getElementById("discount").innerHTML =
+                "₹" + data.discount;
+
+            document.getElementById("finalAmount").innerHTML =
+                "₹" + data.final_amount;
+
+            document.getElementById("discountInput").value =
+                data.discount;
+
+            document.getElementById("finalAmountInput").value =
+                data.final_amount;
+                
+            document.getElementById("couponCodeInput").value =
+                 data.coupon_code;
+
+        }
+        else{
+
+            document.getElementById("couponMessage").innerHTML =
+                data.message;
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+
+</html>

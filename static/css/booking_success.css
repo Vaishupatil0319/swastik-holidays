@@ -1,0 +1,86 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.success-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+.success-card{
+    background:#fff;
+    width:500px;
+    padding:40px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.success-icon{
+    width:90px;
+    height:90px;
+    background:#198754;
+    color:#fff;
+    font-size:45px;
+    border-radius:50%;
+    margin:0 auto 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.success-card h1{
+    color:#198754;
+    margin-bottom:20px;
+}
+
+.success-card p{
+    color:#555;
+    line-height:28px;
+    margin-bottom:15px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:25px;
+}
+
+.primary-btn,
+.secondary-btn{
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.primary-btn{
+    background:#0d6efd;
+    color:white;
+}
+
+.primary-btn:hover{
+    background:#084298;
+}
+
+.secondary-btn{
+    background:#6c757d;
+    color:white;
+}
+
+.secondary-btn:hover{
+    background:#5a6268;
+}

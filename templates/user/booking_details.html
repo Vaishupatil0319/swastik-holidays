@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Booking Details</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/booking_details.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Booking Details</h2>
+
+<div class="card">
+
+<img src="{{ url_for('static', filename='images/' + booking.image) }}"
+class="package-image">
+
+<h3>{{ booking.package_name }}</h3>
+
+<p><strong>Location:</strong> {{ booking.location }}</p>
+
+<p><strong>Duration:</strong> {{ booking.duration }}</p>
+
+<p><strong>Price:</strong> ₹{{ booking.price }}</p>
+
+<p><strong>Description:</strong></p>
+
+<p>{{ booking.description }}</p>
+
+<hr>
+
+<h3>Travel Information</h3>
+
+<p><strong>Travel Date:</strong> {{ booking.travel_date }}</p>
+
+<p><strong>Travelers:</strong> {{ booking.travelers }}</p>
+
+<p><strong>Booking Date:</strong> {{ booking.booking_date }}</p>
+
+<p>
+
+<strong>Status:</strong>
+
+<span class="status {{ booking.status|lower }}">
+{{ booking.status }}
+</span>
+
+</p>
+
+<a href="{{ url_for('user.download_receipt', booking_id=booking.id) }}"
+   class="download-btn">
+    Download Receipt (PDF)
+</a>
+
+<div class="timeline">
+
+    <div class="timeline-step active">
+        <div class="circle">✓</div>
+        <p>Booking Submitted</p>
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div class="timeline-step
+        {% if booking.status in ['Pending','Confirmed','Completed','Cancelled'] %}
+            active
+        {% endif %}">
+        <div class="circle">2</div>
+        <p>Pending</p>
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div class="timeline-step
+        {% if booking.status in ['Confirmed','Completed'] %}
+            active
+        {% endif %}">
+        <div class="circle">3</div>
+        <p>Confirmed</p>
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div class="timeline-step
+        {% if booking.status == 'Completed' %}
+            active
+        {% endif %}">
+        <div class="circle">4</div>
+        <p>Completed</p>
+    </div>
+
+</div>
+
+{% if booking.status == "Cancelled" %}
+<div class="cancel-box">
+    ❌ This booking has been cancelled.
+</div>
+{% endif %}
+
+<a href="{{ url_for('user.add_review', booking_id=booking.id) }}"
+   class="review-btn">
+    ⭐ Write Review
+</a>
+
+<a href="/my_bookings" class="back-btn">
+← Back to My Bookings
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

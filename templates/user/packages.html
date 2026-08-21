@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Tour Packages</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static',filename='css/packages.css') }}">
+
+</head>
+
+<body>
+
+<div class="heading">
+    <div class="top-bar">
+    <a href="{{ url_for('user.dashboard') }}" class="back-btn">
+        ← Back
+    </a>
+    </div>
+
+    <h1>Explore Our Tour Packages</h1>
+
+    <p>Choose your dream holiday with Swastik Holidays.</p>
+
+</div>
+
+<form method="GET">
+
+<div class="search-box">
+
+
+<input
+
+type="text"
+
+name="search"
+
+placeholder="Search Packages"
+
+value="{{search}}">
+
+<select name="location_filter">
+
+<option value="">
+
+All Locations
+
+</option>
+
+
+{% for location in locations %}
+
+<option value="{{location.location}}"
+
+{% if location_filter==location.location %}
+selected
+{% endif %}>
+
+{{location.location}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<select name="duration_filter">
+
+<option value="">
+
+All Durations
+
+</option>
+
+
+{% for duration in durations %}
+
+<option value="{{duration.duration}}"
+
+{% if duration_filter==duration.duration %}
+selected
+{% endif %}>
+
+{{duration.duration}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<select name="price_filter">
+
+
+<option value=""
+
+{% if price_filter=="" %}
+selected
+{% endif %}>
+
+All Prices
+
+</option>
+
+
+
+<option value="0-5000"
+
+{% if price_filter=="0-5000" %}
+selected
+{% endif %}>
+
+₹0 - ₹5000
+
+</option>
+
+
+
+<option value="5001-10000"
+
+{% if price_filter=="5001-10000" %}
+selected
+{% endif %}>
+
+₹5001 - ₹10000
+
+</option>
+
+
+
+<option value="10001-20000"
+
+{% if price_filter=="10001-20000" %}
+selected
+{% endif %}>
+
+₹10001 - ₹20000
+
+</option>
+
+
+
+<option value="20000+"
+
+{% if price_filter=="20000+" %}
+selected
+{% endif %}>
+
+Above ₹20000
+
+</option>
+
+
+</select>
+
+<select name="sort_by">
+
+
+<option value=""
+
+{% if sort_by=="" %}
+selected
+{% endif %}>
+
+Newest Packages
+
+</option>
+
+
+
+<option value="oldest"
+
+{% if sort_by=="oldest" %}
+selected
+{% endif %}>
+
+Oldest Packages
+
+</option>
+
+
+
+<option value="price_low"
+
+{% if sort_by=="price_low" %}
+selected
+{% endif %}>
+
+Price : Low → High
+
+</option>
+
+
+
+<option value="price_high"
+
+{% if sort_by=="price_high" %}
+selected
+{% endif %}>
+
+Price : High → Low
+
+</option>
+
+
+
+<option value="name_asc"
+
+{% if sort_by=="name_asc" %}
+selected
+{% endif %}>
+
+Package Name : A-Z
+
+</option>
+
+
+
+<option value="name_desc"
+
+{% if sort_by=="name_desc" %}
+selected
+{% endif %}>
+
+Package Name : Z-A
+
+</option>
+
+
+</select>
+
+
+
+<button type="submit">
+
+Search
+
+</button>
+
+
+
+<a href="{{url_for('user.packages')}}">
+
+Reset
+
+</a>
+
+
+</div>
+
+</form>
+
+<div class="package-container">
+
+{% for package in packages %}
+
+<div class="package-card">
+
+    {% if packages|length==0 %}
+
+<div class="no-package">
+
+No Packages Found.
+
+</div>
+
+{% endif %}
+
+<div class="package-image">
+
+<img src="{{url_for('static',
+filename='images/'+package.image)}}">
+
+</div>
+
+
+
+<div class="package-details">
+
+<h2>
+
+{{package.package_name}}
+
+</h2>
+
+
+<p>
+
+<b>Location :</b>
+
+{{package.location}}
+
+</p>
+
+
+
+<p>
+
+<b>Duration :</b>
+
+{{package.duration}}
+
+</p>
+
+
+
+<p>
+
+<b>Price :</b>
+
+₹ {{package.price}}
+
+</p>
+
+
+
+<p>
+
+{{package.description[:120]}}.....
+
+</p>
+
+
+
+{% if package.status=="Available" %}
+
+<span class="available">
+
+Available
+
+</span>
+
+{% else %}
+
+<span class="unavailable">
+
+Unavailable
+
+</span>
+
+{% endif %}
+
+
+<div class="button-box">
+
+
+<a href="{{url_for('user.package_details',
+id=package.id)}}">
+
+View Details
+
+</a>
+
+
+
+<a href="{{ url_for('user.book_package', id=package.id) }}">
+
+Book Now
+
+</a>
+
+
+
+<a href="{{url_for('user.add_to_wishlist',
+package_id=package.id)}}">
+
+❤ Wishlist
+
+</a>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+{% endfor %}
+
+
+</div>
+</body>
+
+</html>

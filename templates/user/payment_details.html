@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Payment Details</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/payment_details.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Payment Receipt</h1>
+
+<a href="{{ url_for('user.my_payments') }}"
+class="back-btn">
+
+← Back
+
+</a>
+
+</div>
+
+<div class="payment-card">
+
+    <h2>Payment Information</h2>
+
+    <table class="payment-table">
+
+        <tr>
+            <th>Transaction ID</th>
+            <td>{{ payment.transaction_id }}</td>
+        </tr>
+
+        <tr>
+            <th>Original Amount</th>
+            <td>₹{{ payment.original_amount }}</td>
+        </tr>
+
+        <tr>
+            <th>Discount Amount</th>
+            <td>₹{{ payment.discount_amount }}</td>
+        </tr>
+
+        <tr>
+            <th>Final Amount Paid</th>
+            <td>₹{{ payment.final_amount }}</td>
+        </tr>
+
+        <tr>
+            <th>Coupon Code</th>
+            <td>
+                {% if payment.coupon_code %}
+                    {{ payment.coupon_code }}
+                {% else %}
+                    Not Applied
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Payment Method</th>
+            <td>{{ payment.payment_method }}</td>
+        </tr>
+
+        <tr>
+            <th>Payment Gateway</th>
+            <td>{{ payment.payment_gateway }}</td>
+        </tr>
+
+        <tr>
+            <th>Payment Status</th>
+            <td>{{ payment.payment_status }}</td>
+        </tr>
+
+        <tr>
+            <th>Payment Date</th>
+            <td>{{ payment.payment_date }}</td>
+        </tr>
+
+        <tr>
+            <th>Refund Status</th>
+            <td>{{ payment.refund_status }}</td>
+        </tr>
+
+        <tr>
+            <th>Remarks</th>
+            <td>
+                {% if payment.remarks %}
+                    {{ payment.remarks }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+</div>
+
+<div class="action-buttons">
+
+    <a
+        href="{{ url_for('user.download_payment_receipt',
+        payment_id=payment.id) }}"
+        class="download-btn">
+
+        Download Receipt
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

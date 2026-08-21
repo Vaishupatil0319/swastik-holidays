@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>My Bookings</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/my_bookings.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="top-bar">
+    <a href="{{ url_for('user.dashboard') }}" class="back-btn">
+        ← Back
+    </a>
+    </div>
+
+    <h1>My Bookings</h1>
+
+    {% if bookings %}
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Package</th>
+            <th>Location</th>
+            <th>Travel Date</th>
+            <th>Travelers</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Booked On</th>
+            <th>Details</th>
+        </tr>
+
+        {% for booking in bookings %}
+
+        <tr>
+
+            <td>{{ booking.id }}</td>
+
+            <td>{{ booking.package_name }}</td>
+
+            <td>{{ booking.location }}</td>
+
+            <td>{{ booking.travel_date }}</td>
+
+            <td>{{ booking.travelers }}</td>
+
+            <td>₹{{ booking.price }}</td>
+
+            <td>
+
+{% if booking.status == "Pending" %}
+
+<div class="status pending">
+    ⏳ Pending
+</div>
+
+<p class="message pending-msg">
+    Your booking is waiting for admin approval.
+</p>
+
+{% elif booking.status == "Confirmed" %}
+
+<div class="status confirmed">
+    ✅ Confirmed
+</div>
+
+<p class="message confirmed-msg">
+    Your booking has been confirmed. Have a great trip!
+</p>
+
+{% else %}
+
+<div class="status cancelled">
+    ❌ Cancelled
+</div>
+
+<p class="message cancelled-msg">
+    Your booking has been cancelled. Please contact support.
+</p>
+
+{% endif %}
+</td>
+
+
+            <td>{{ booking.booking_date }}</td>
+                        
+
+            </td>
+
+        <td>
+        <a href="/booking_details/{{ booking.id }}"
+        class="view-btn">
+            View Details
+        </a>
+        {% if booking.status == "Pending" %}
+
+<a href="{{ url_for('user.cancel_booking', booking_id=booking.id) }}"
+   class="cancel-btn"
+   onclick="return confirm('Are you sure you want to cancel this booking?');">
+    Cancel
+</a>
+
+{% endif %}
+        </td>
+
+        
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <div class="empty">
+
+        <h2>No Bookings Found</h2>
+
+        <p>You haven't booked any packages yet.</p>
+
+        <a href="/packages" class="browse-btn">
+            Browse Packages
+        </a>
+
+    </div>
+
+    {% endif %}
+
+    
+
+</div>
+
+</body>
+</html>

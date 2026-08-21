@@ -1,0 +1,177 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    display:flex;
+    background:#f4f6f9;
+}
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#0d6efd;
+    color:white;
+    padding:20px;
+    position:fixed;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:8px;
+}
+
+.sidebar a:hover{
+    background:#084298;
+}
+
+.main{
+    margin-left:250px;
+    width:calc(100% - 250px);
+}
+
+.topbar{
+    background:white;
+    padding:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.cards{
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    flex:1;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+    text-align:center;
+}
+
+.card h3{
+    color:#0d6efd;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.content{
+    margin:20px;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+.wishlist-count{
+    background:#e91e63;
+    color:white;
+    padding:2px 8px;
+    border-radius:50px;
+    font-size:12px;
+    font-weight:bold;
+    margin-left:6px;
+    display:inline-block;
+    min-width:22px;
+    text-align:center;
+}
+.notification-badge{
+
+    background:red;
+
+    color:white;
+
+    padding:3px 8px;
+
+    border-radius:50%;
+
+    font-size:12px;
+
+    margin-left:8px;
+
+    font-weight:bold;
+
+}
+
+.notification-widget{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0px 5px 15px rgba(0,0,0,0.08);
+
+margin-top:40px;
+
+}
+
+.widget-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.widget-header h2{
+
+color:#0d6efd;
+
+}
+
+.widget-header a{
+
+text-decoration:none;
+
+color:#0d6efd;
+
+font-weight:bold;
+
+}
+
+.notification-item{
+
+padding:15px;
+
+border-bottom:1px solid #eee;
+
+transition:.3s;
+
+}
+
+.notification-item:last-child{
+
+border:none;
+
+}
+
+.notification-item:hover{
+
+background:#f8f9fa;
+
+border-radius:8px;
+
+}

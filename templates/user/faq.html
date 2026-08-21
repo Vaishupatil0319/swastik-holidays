@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Frequently Asked Questions</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/faq.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Frequently Asked Questions</h1>
+
+<a href="{{ url_for('user.dashboard') }}"
+class="back-btn">
+
+← Dashboard
+
+</a>
+
+</div>
+
+{% if faqs %}
+
+{% for faq in faqs %}
+
+<div class="faq-item">
+
+<button
+class="faq-question">
+
+{{ faq.question }}
+
+<span>+</span>
+
+</button>
+
+<div class="faq-answer">
+
+<p>
+
+{{ faq.answer }}
+
+</p>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="empty-box">
+
+<h2>No FAQs Available</h2>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<script>
+
+const questions =
+document.querySelectorAll(".faq-question");
+
+questions.forEach(question=>{
+
+question.addEventListener("click",()=>{
+
+const answer=
+question.nextElementSibling;
+
+const icon=
+question.querySelector("span");
+
+if(answer.style.maxHeight){
+
+answer.style.maxHeight=null;
+
+icon.innerHTML="+";
+
+}
+else{
+
+document.querySelectorAll(".faq-answer")
+.forEach(a=>a.style.maxHeight=null);
+
+document.querySelectorAll(".faq-question span")
+.forEach(i=>i.innerHTML="+");
+
+answer.style.maxHeight=
+answer.scrollHeight+"px";
+
+icon.innerHTML="−";
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>

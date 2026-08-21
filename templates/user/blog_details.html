@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{{ blog.title }}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/blog_details.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>{{ blog.title }}</h1>
+
+        <a href="{{ url_for('user.travel_blogs') }}"
+           class="back-btn">
+
+            ← Back
+
+        </a>
+
+    </div>
+
+    <div class="blog-image">
+
+        <img
+        src="{{ url_for('static',
+        filename='images/' + blog.image) }}">
+
+    </div>
+
+    <div class="blog-info">
+
+        <span class="category">
+
+            {{ blog.category }}
+
+        </span>
+
+        <p class="date">
+
+            Published :
+            {{ blog.created_at }}
+
+        </p>
+
+    </div>
+
+    <div class="description">
+
+        <h3>About This Blog</h3>
+
+        <p>
+
+            {{ blog.short_description }}
+
+        </p>
+
+    </div>
+
+    <div class="content">
+
+        <h3>Travel Story</h3>
+
+        <p>
+
+            {{ blog.content }}
+
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

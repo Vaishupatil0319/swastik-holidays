@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/add_review.css') }}">
+</head>
+<body>
+
+<div class="review-container">
+
+    <h2>Rate Your Experience</h2>
+
+    <p class="package-name">
+        {{ booking.package_name }}
+    </p>
+
+    <form method="POST">
+
+        <div class="form-group">
+
+            <label>Rating</label>
+
+            <select name="rating" required>
+
+                <option value="">Select Rating</option>
+                <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                <option value="4">⭐⭐⭐⭐ (4)</option>
+                <option value="3">⭐⭐⭐ (3)</option>
+                <option value="2">⭐⭐ (2)</option>
+                <option value="1">⭐ (1)</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Your Review</label>
+
+            <textarea
+                name="review"
+                rows="6"
+                placeholder="Write your experience..."
+                required></textarea>
+
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Submit Review
+        </button>
+
+        <a href="{{ url_for('user.booking_details', id=booking.id) }}" class="back-btn">
+            Back
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

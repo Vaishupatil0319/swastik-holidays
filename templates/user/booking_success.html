@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Booking Successful</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/booking_success.css') }}">
+
+</head>
+
+<body>
+
+<div class="success-container">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>Booking Successful!</h1>
+
+        <p>
+            Thank you for choosing
+            <strong>Swastik Holidays</strong>.
+        </p>
+
+        <p>
+            Your booking request has been submitted successfully.
+            Our team will contact you shortly.
+        </p>
+
+        <div class="buttons">
+
+            <a href="/my_bookings" class="primary-btn">
+                My Bookings
+            </a>
+
+            <a href="/" class="secondary-btn">
+                Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/gallery.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>Travel Gallery</h1>
+
+        <p>
+
+            Explore beautiful destinations from
+            Swastik Holidays.
+
+        </p>
+
+    </div>
+
+    {% if gallery %}
+
+    <div class="gallery-grid">
+
+        {% for image in gallery %}
+
+        <div class="gallery-card">
+
+            <img
+            src="{{ url_for('static',
+            filename='images/' + image.image) }}"
+            alt="{{ image.title }}">
+
+            <div class="content">
+
+                <h3>
+
+                    {{ image.title }}
+
+                </h3>
+
+                <span class="category">
+
+                    {{ image.category }}
+
+                </span>
+
+                <p>
+
+                    {{ image.description }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-box">
+
+        <h2>
+
+            No Gallery Images Available
+
+        </h2>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

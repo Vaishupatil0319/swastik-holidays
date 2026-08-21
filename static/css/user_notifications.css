@@ -1,0 +1,280 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:40px;
+}
+
+.container{
+width:90%;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+color:#0d6efd;
+}
+
+.summary{
+text-align:center;
+margin-bottom:30px;
+font-size:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 10px lightgray;
+margin-bottom:25px;
+}
+
+.card h2{
+color:#0d6efd;
+margin-bottom:15px;
+}
+
+.card p{
+margin-bottom:15px;
+line-height:28px;
+}
+
+.card h4{
+margin-bottom:10px;
+}
+
+.card h5{
+color:gray;
+margin-bottom:20px;
+}
+
+.unread{
+background:red;
+color:white;
+padding:8px 18px;
+border-radius:20px;
+}
+
+.read{
+background:green;
+color:white;
+padding:8px 18px;
+border-radius:20px;
+}
+
+.btn{
+display:inline-block;
+margin-left:20px;
+padding:10px 18px;
+background:#0d6efd;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
+
+.btn:hover{
+background:#084298;
+}
+
+.empty-box{
+
+    background:white;
+    padding:60px 40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0px 8px 25px rgba(0,0,0,0.08);
+
+}
+
+.empty-icon{
+
+    font-size:70px;
+    margin-bottom:25px;
+
+}
+
+.empty-box h2{
+
+    color:#0d6efd;
+    margin-bottom:20px;
+
+}
+
+.empty-box p{
+
+    color:#666;
+    line-height:30px;
+    margin-bottom:35px;
+    font-size:17px;
+
+}
+
+.explore-btn{
+
+    display:inline-block;
+    text-decoration:none;
+    background:#0d6efd;
+    color:white;
+    padding:14px 30px;
+    border-radius:10px;
+    transition:0.3s;
+
+}
+
+.explore-btn:hover{
+
+    background:#084298;
+    transform:translateY(-3px);
+
+}
+
+.delete-btn{
+
+display:inline-block;
+margin-left:10px;
+padding:10px 18px;
+background:#dc3545;
+color:white;
+text-decoration:none;
+border-radius:8px;
+transition:0.3s;
+
+}
+
+.delete-btn:hover{
+
+background:#bb2d3b;
+
+}
+
+.flash{
+
+padding:15px;
+margin-bottom:20px;
+border-radius:8px;
+text-align:center;
+font-weight:bold;
+
+}
+
+.flash.success{
+
+background:#d1e7dd;
+color:#0f5132;
+border:1px solid #badbcc;
+
+}
+
+.notification-actions{
+
+display:flex;
+justify-content:flex-end;
+gap:15px;
+margin-bottom:25px;
+flex-wrap:wrap;
+
+}
+
+.read-all-btn{
+
+background:#198754;
+color:white;
+padding:10px 18px;
+text-decoration:none;
+border-radius:8px;
+transition:0.3s;
+
+}
+
+.read-all-btn:hover{
+
+background:#146c43;
+
+}
+
+.delete-all-btn{
+
+background:#dc3545;
+color:white;
+padding:10px 18px;
+text-decoration:none;
+border-radius:8px;
+margin-left:10px;
+transition:0.3s;
+
+}
+
+.delete-all-btn:hover{
+
+background:#bb2d3b;
+
+}
+
+.notification-type{
+
+margin-bottom:15px;
+
+}
+
+.package-icon,
+.offer-icon,
+.booking-icon,
+.review-icon,
+.festival-icon,
+.general-icon{
+
+display:inline-block;
+padding:8px 16px;
+border-radius:20px;
+font-weight:bold;
+font-size:14px;
+
+}
+
+.package-icon{
+
+background:#e8f3ff;
+color:#0d6efd;
+
+}
+
+.offer-icon{
+
+background:#fff4e5;
+color:#ff9800;
+
+}
+
+.booking-icon{
+
+background:#e8fff3;
+color:#198754;
+
+}
+
+.review-icon{
+
+background:#fff8dc;
+color:#b8860b;
+
+}
+
+.festival-icon{
+
+background:#ffe8f5;
+color:#d63384;
+
+}
+
+.general-icon{
+
+background:#f1f1f1;
+color:#555;
+
+}

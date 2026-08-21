@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Notifications</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/user_notifications.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Notifications</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+
+            <div class="flash {{ category }}">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+
+<div class="summary">
+
+<h3>
+Unread Notifications :
+{{ unread }}
+</h3>
+
+</div>
+
+<div class="notification-actions">
+
+    {% if unread > 0 %}
+    <a href="{{ url_for('user.read_all_notifications') }}"
+       class="read-all-btn">
+
+        ✓ Mark All Read
+
+    </a>
+    {% endif %}
+
+    {% if notifications %}
+    <a href="{{ url_for('user.delete_all_notifications') }}"
+       class="delete-all-btn"
+       onclick="return confirm('Are you sure you want to delete all notifications?')">
+
+        🗑 Delete All
+
+    </a>
+    {% endif %}
+
+</div>
+
+{% if notifications %}
+
+{% for notification in notifications %}
+
+<div class="card">
+
+<h2>{{ notification.title }}</h2>
+
+<p>{{ notification.message }}</p>
+
+<div class="notification-type">
+
+{% if notification.notification_type=="Package" %}
+
+<span class="package-icon">
+📦 Package Update
+</span>
+
+{% elif notification.notification_type=="Offer" %}
+
+<span class="offer-icon">
+💰 Special Offer
+</span>
+
+{% elif notification.notification_type=="Booking" %}
+
+<span class="booking-icon">
+📅 Booking Update
+</span>
+
+{% elif notification.notification_type=="Review" %}
+
+<span class="review-icon">
+⭐ Review Reminder
+</span>
+
+{% elif notification.notification_type=="Festival" %}
+
+<span class="festival-icon">
+🎉 Festival Offer
+</span>
+
+{% else %}
+
+<span class="general-icon">
+📢 General Announcement
+</span>
+
+{% endif %}
+
+</div>
+
+<h5>
+{{ notification.created_at }}
+</h5>
+
+{% if notification.status=="Unread" %}
+
+<span class="unread">
+Unread
+</span>
+
+<a
+href="{{ url_for('user.read_notification',
+id=notification.id) }}"
+class="btn">
+
+Mark as Read
+
+</a>
+
+<a href="{{ url_for('user.delete_notification',
+id=notification.id) }}"
+class="delete-btn"
+onclick="return confirm('Are you sure you want to delete this notification?')">
+
+Delete
+
+</a>
+
+<a href="{{ url_for('user.notification_details',
+id=notification.id) }}"
+class="btn">
+
+View Details
+
+</a>
+
+{% else %}
+
+<span class="read">
+Read
+</span>
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="empty-box">
+
+    <div class="empty-icon">
+
+        🔔
+
+    </div>
+
+    <h2>
+
+        No Notifications Yet
+
+    </h2>
+
+    <p>
+
+        You're all caught up!
+
+        <br><br>
+
+        We'll notify you about
+        new tour packages,
+        booking updates,
+        special offers,
+        and travel announcements.
+
+    </p>
+
+    <a href="{{ url_for('user.packages') }}"
+       class="explore-btn">
+
+        Explore Packages
+
+    </a>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

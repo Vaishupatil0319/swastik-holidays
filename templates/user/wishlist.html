@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Wishlist</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/wishlist.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="top-bar">
+    <a href="{{ url_for('user.dashboard') }}" class="back-btn">
+        ← Back
+    </a>
+    </div>
+
+    
+
+    <h1>❤️ My Wishlist</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% if wishlist %}
+
+        <div class="wishlist-grid">
+
+        {% for item in wishlist %}
+
+            <div class="card">
+
+                <h2>{{ item.package_name }}</h2>
+
+                <p><strong>Price:</strong> ₹{{ item.price }}</p>
+
+                <p><strong>Duration:</strong> {{ item.duration }}</p>
+
+                <p>{{ item.description }}</p>
+
+                <div class="buttons">
+
+                    <a href="{{ url_for('user.package_details', id=item.package_id) }}">
+                        View Details
+                    </a>
+
+                    <a href="{{ url_for('user.book_package',id=item.package_id) }}"
+                        class="book-btn">
+                        Book Now
+                    </a>
+
+
+                    <a href="{{ url_for('user.remove_from_wishlist', wishlist_id=item.wishlist_id) }}"
+                       class="remove-btn"
+                       onclick="return confirm('Remove this package from wishlist?')">
+                        Remove
+                    </a>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty">
+            <h3>Your wishlist is empty.</h3>
+            <p>Add your favourite travel packages to see them here.</p>
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

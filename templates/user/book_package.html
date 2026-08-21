@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Book Package</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/book_package.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Book Tour Package</h2>
+
+<form method="POST">
+
+<label>Package Name</label>
+
+<input
+type="text"
+value="{{ package.package_name }}"
+readonly>
+
+<label>Price</label>
+
+<input
+type="text"
+value="₹{{ package.price }}"
+readonly>
+
+<label>Travel Date</label>
+
+<input
+type="date"
+name="travel_date"
+required>
+
+<label>Number of Travelers</label>
+
+<input
+type="number"
+name="travelers"
+min="1"
+required>
+
+<button type="submit">
+
+Confirm Booking
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

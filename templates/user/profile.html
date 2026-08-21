@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>My Profile</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/profile.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<h2>My Profile</h2>
+
+
+
+<form method="POST">
+
+<label>Full Name</label>
+
+<input
+type="text"
+name="name"
+value="{{ customer.name }}"
+required>
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+value="{{ customer.email }}"
+required>
+
+<label>Mobile</label>
+
+<input
+type="text"
+name="mobile"
+value="{{ customer.mobile }}"
+required>
+
+<label>Address</label>
+
+<textarea
+name="address"
+required>{{ customer.address }}</textarea>
+
+<a href="{{ url_for('user.change_password') }}" class="btn">
+    Change Password
+</a>
+
+<button type="submit">
+    Update Profile
+</button>
+
+<a href="/dashboard" class="btn">
+    ← Back
+</a>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
